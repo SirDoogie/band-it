@@ -1,27 +1,34 @@
 version: '3.6'
+
 services:
   postgres:
     image: postgres:11.1
     volumes:
-      - 'postgres:/var/lib/postgresql/data'
+      - /usr/data/volumes/pgdata/etc:/etc/postgresql
+      - /usr/data/volumes/pgdata/log:/var/log/postgresql
+      - /usr/data/volumes/pgdata/data:/var/lib/postgresql/data
     env_file:
-      - '.env'
+      - ./.env
   backend:
     depends_on:
       - postgres
     build: ./backend
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - .:/bandit
+      - ./backend:/backend
+      - /usr/data/volumes/bundle:/bundle
+    environment:
+      - BUNDLE_PATH=/bundle
     ports:
       - "3000:3000"
   frontend:
     build: ./frontend
     command: yarn run start
     volumes:
-      - .:/bandit
+      - ./frontend:/frontend
+    env_file:
+      - ./.env
     ports:
       - "8080:8080"
     
-volumes:
-  postgres:
+
