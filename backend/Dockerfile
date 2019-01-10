@@ -7,8 +7,8 @@ RUN mkdir -p /backend
 COPY ./Gemfile /backend/Gemfile
 COPY ./Gemfile.lock /backend/Gemfile.lock
 
-RUN useradd -m -s /bin/bash -u 1000 astral
-USER astral
+#RUN usermod -o -u 1000 astral
+#USER astral
 
 WORKDIR /backend
 

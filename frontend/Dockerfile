@@ -9,8 +9,8 @@ RUN mkdir -p /frontend
 COPY ./package.json /frontend/package.json
 COPY ./yarn.lock /frontend/yarn.lock
 
-RUN useradd -m -s /bin/bash -u 1000 astral
-USER astral
+#RUN useradd -m -s /bin/bash -u 1000 astral
+#USER astral
 
 WORKDIR /frontend
 
