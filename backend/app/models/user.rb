@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_create :confirmation_token
+  before_create :generate_token
 
   has_secure_password
 
@@ -8,10 +8,8 @@ class User < ApplicationRecord
 
   private
 
-  def confirmation_token
-    if self.confirmation_token.blank?
-      self.confirm_token = SecureRandom.urlsafe_base64.to_s
-    end
+  def generate_token
+    self.confirmation_token = SecureRandom.urlsafe_base64.to_s if self.confirmation_token.blank?
   end
 
   def email_confirm

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -11,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    user = User.find_by_confirmation_token(params[:token])
+    user = User.find_by(confirmation_token: params[:token])
     if user.email_confirm
       render status: :ok
     else
