@@ -6,15 +6,15 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, length: { minimum: 6 }
 
-  private
-
-  def generate_token
-    self.confirmation_token = SecureRandom.urlsafe_base64.to_s if self.confirmation_token.blank?
-  end
-
   def email_confirm
     self.confirmed = true
     self.confirmation_token = nil
     save
+  end
+
+  private
+
+  def generate_token
+    self.confirmation_token = SecureRandom.urlsafe_base64.to_s if self.confirmation_token.blank?
   end
 end
