@@ -8,6 +8,8 @@ gem 'rails', '~> 5.2.2'
 gem 'redis', '~> 4.0'
 # gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'decent_exposure', '3.0.0'
+gem 'jwt'
 gem 'rack-cors'
 
 group :development, :test do
@@ -22,6 +24,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 group :development do

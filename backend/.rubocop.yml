@@ -1,5 +1,6 @@
 require: rubocop-rspec
 AllCops:
+  TargetRubyVersion: 2.5
   Exclude:
     - 'bin/*'
     - 'spec/spec_helper.rb'
@@ -14,3 +15,5 @@ Metrics/MethodLength:
   Max: 30
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
+Style/FrozenStringLiteralComment:
+  Enabled: false

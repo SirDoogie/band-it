@@ -26,6 +26,7 @@ module Backend
     logger.formatter = config.log_formatter
     config.log_tags  = %i[subdomain uuid]
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.middleware.use ActionDispatch::Cookies
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -36,5 +37,7 @@ module Backend
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.eager_load_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

@@ -1,7 +1,10 @@
 FactoryBot.define do
   factory :user do
-    email { 'email@example.com' }
+    email { 'user@example.com' }
     password { 'password' }
-    password_confirmation { 'password' }
+
+    factory :user_credentials do
+      password_confirmation { 'password' }
+    end
   end
 end

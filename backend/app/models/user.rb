@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, allow_nil: true
 
   def email_confirm
     self.confirmed = true
