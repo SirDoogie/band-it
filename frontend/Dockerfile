@@ -1,4 +1,4 @@
-FROM node:11.6.0-stretch
+FROM node:10.15-stretch
 
 RUN apt-get update -qq
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
