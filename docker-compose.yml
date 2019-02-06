@@ -12,10 +12,12 @@ services:
   backend:
     depends_on:
       - postgres
-    build: ./backend
-    user: astral
-    environment:
-    - BUNDLE_PATH=/home/astral/bundle
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID:-0}
+        GROUP_ID: ${GROUP_ID:-0}
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - ./backend:/home/astral/backend
