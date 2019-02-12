@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UserConfirmationsController, type: :controller do
+RSpec.describe Users::ConfirmationsController, type: :controller do
   describe 'POST #create' do
     subject(:user) { create :user }
 

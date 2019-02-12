@@ -5,10 +5,11 @@ AllCops:
     - 'bin/*'
     - 'spec/spec_helper.rb'
     - 'db/schema.rb'
+    - 'spec/support/shared_db_connection.rb'
 Rails:
   Enabled: true
 Metrics/LineLength:
-  Max: 120
+  Max: 130
 Style/Documentation:
   Enabled: false
 Metrics/MethodLength:
@@ -17,3 +18,5 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
 Style/FrozenStringLiteralComment:
   Enabled: false
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested

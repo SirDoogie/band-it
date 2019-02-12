@@ -12,10 +12,10 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'when given nil email' do
-      let(:user_params) { attributes_for(:user_credentials, email: nil) }
-      let(:response) { JSON.parse(user.body, symbolize_names: true) }
+      let(:user_params) { attributes_for(:user_signup, email: nil) }
+      let(:response) { parse_response(user) }
 
-      it { expect(response[:email]).to include "can't be blank" }
+      it { expect(response.dig(:errors, :email)).to include "can't be blank" }
       it { expect(user).to have_http_status(:unprocessable_entity) }
     end
 
@@ -23,7 +23,7 @@ RSpec.describe UsersController, type: :controller do
       let(:user_params) { attributes_for(:user_credentials, password: '1234', password_confirmation: '1234') }
       let(:response) { JSON.parse(user.body, symbolize_names: true) }
 
-      it { expect(response[:password]).to include 'is too short (minimum is 6 characters)' }
+      it { expect(response.dig(:errors, :password)).to include 'is too short (minimum is 6 characters)' }
       it { expect(user).to have_http_status(:unprocessable_entity) }
     end
   end

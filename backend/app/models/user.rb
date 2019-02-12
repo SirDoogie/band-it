@@ -1,9 +1,13 @@
 class User < ApplicationRecord
-  has_friendship
+
   before_create :generate_token
-  has_many :conversations, dependent: :destroy
+  after_create :create_profile
 
   has_secure_password
+  has_friendship
+
+  has_one :profile, dependent: :destroy
+  has_many :conversations, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, allow_nil: true
@@ -28,6 +32,11 @@ class User < ApplicationRecord
     self.reset_pwd_token = nil
     self.password = password
     save
+  end
+
+
+  def create_profile
+    build_profile
   end
 
   private
