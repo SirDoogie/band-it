@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  expose :user
+
   def create
-    user = User.new(user_params)
     if user.save
       UserConfirmationMailer.registration_confirmation(user).deliver
       render json: user, status: :created
