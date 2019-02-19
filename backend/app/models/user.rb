@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_create :generate_token
+  has_many :conversations, dependent: :destroy
 
   has_secure_password
 
