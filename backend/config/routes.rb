@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   end
   resources :password_resets, only: :create
   resources :password_updates, only: :create
+  resources :conversations, only: %i[index create] do
+    resources :messages, only: %i[index create]
+  end
 end
