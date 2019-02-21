@@ -1,0 +1,49 @@
+/* Colors */
+$primary-color: #0182E8;
+$success-color: #32EFAB;
+$danger-color: #EF3232;
+
+$white: #fff !default;
+$black: #000 !default;
+$gray-600: #6c757d !default;
+
+$primary: $primary-color !default;
+$success: $success-color !default;
+$danger: $danger-color !default;
+$dark: $black !default;
+
+$body-bg: $black !default;
+$body-color: $white !default;
+
+$navbar-dark-color: rgba($white, .5) !default;
+$navbar-dark-hover-color: $white !default;
+$navbar-dark-active-color: $white !default;
+
+$dropdown-link-color: $gray-600 !default;
+$dropdown-link-hover-color: $white !default;
+$dropdown-link-hover-bg: $primary !default;
+
+/* Grid */
+$grid-gutter-width: 10px !default;
+
+
+/* Fonts */
+$cursive-font: 'Archivo Black', sans-serif;
+
+/* Size */
+$input-btn-padding-y: .375rem !default;
+$input-btn-padding-x: 1rem !default;
+$input-btn-padding-y-lg: .85rem !default;
+$input-btn-padding-x-lg: 3.5rem !default;
+$btn-font-size: 12px;
+$btn-font-size-lg: 14px;
+$dropdown-padding-y: .8rem !default;
+
+$border-radius: 2px !default;
+$border-radius-lg: 2px !default;
+$border-radius-sm: 2px !default;
+
+$navbar-height-landing: 60px;
+$navbar-height-main: 46px;
+
+$card-header-height: 40px;
