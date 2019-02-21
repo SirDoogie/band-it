@@ -1,0 +1,64 @@
+#intro {
+  background-image: url(../images/intro-bg.png);
+  background-size: cover;
+  min-height: 100vh;
+  .intro-brand {
+    .get-started {
+      > span {
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .for-free-img {
+        display: block;
+      }
+    }
+  }
+}
+
+#join-us {
+  background-image: url(../images/join-band-bg.png);
+  background-size: cover;
+  background-position: center;
+  padding: 127px 0 110px 0;
+  .section-title {
+    line-height: 32px;
+    font-size: 25px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin-bottom: 67px;
+    text-transform: uppercase;
+  }
+  .about {
+    .title {
+      display: flex;
+      align-items: flex-start;
+      height: 67px;
+      .number {
+        font-family: $cursive-font;
+        font-size: 30px;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.3);
+
+        transform: rotate(-90deg);
+      }
+      h3 {
+        line-height: 26px;
+        font-size: 20px;
+        letter-spacing: 0.04em;
+        font-weight: 400;
+      }
+    }
+    .text {
+      p {
+        line-height: 20px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+
+        color: rgba(255, 255, 255, 0.5);
+
+
+      }
+    }
+  }
+}

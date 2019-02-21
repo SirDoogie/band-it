@@ -6,6 +6,7 @@ import Navbar from '../components/layout/Navbar'
 
 import IndexPage from '../containers/IndexPage';
 import SignUpPage from '../containers/users/SignUpPage';
+import SignInPage from '../containers/auth/SignInPage';
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
           <Navbar/>
           <Route path='/' exact component={IndexPage} />
           <Route path='/signup/' component={SignUpPage} />
+          <Route path='/signin/' component={SignInPage} />
         </div>
       </Router>
     )
