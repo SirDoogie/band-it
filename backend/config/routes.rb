@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :users
   resources :user_confirmations, only: :create
   resources :authentication, path: 'auth', only: :create
+  resources :password_resets, only: :create
+  resources :password_updates, only: :create
 end
