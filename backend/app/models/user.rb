@@ -13,6 +13,22 @@ class User < ApplicationRecord
     save
   end
 
+  def genarate_reset_token
+    self.reset_pwd_token = SecureRandom.urlsafe_base64.to_s
+    self.reset_pwd_token_time = Time.now.utc
+    save
+  end
+
+  def password_token_valid?
+    reset_pwd_token_time + 4.hours > Time.now.utc
+  end
+
+  def reset_password(password)
+    self.reset_pwd_token = nil
+    self.password = password
+    save
+  end
+
   private
 
   def generate_token

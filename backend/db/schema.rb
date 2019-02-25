@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_105754) do
+ActiveRecord::Schema.define(version: 2019_02_22_095504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_105754) do
     t.datetime "updated_at", null: false
     t.boolean "confirmed", default: false
     t.string "confirmation_token"
+    t.string "reset_pwd_token"
+    t.datetime "reset_pwd_token_time"
   end
 
   add_foreign_key "messages", "conversations"
