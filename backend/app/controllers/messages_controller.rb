@@ -5,15 +5,15 @@ class MessagesController < ApplicationController
 
   expose :user, -> { current_user }
   expose :conversation, parent: :user
-  expose :messages, parent: conversation
-  expose :message, parent: :messages
+  expose :messages, -> { Message.where(conversation: :conversation) }
+  expose :message
 
   def index
     render json: messages, status: :ok
   end
 
   def create
-    return render json: message, status: :created if message.save?
+    return render json: message, status: :created if message.save
 
     render json: message.errors, status: :unprocessable_entity
   end

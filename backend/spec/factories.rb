@@ -10,7 +10,7 @@ FactoryBot.define do
     receiver_id { nil }
   end
   factory :user do
-   email { 'user@example.com' }
+    email { Faker::Internet.email }
     password { 'password' }
     reset_pwd_token { nil }
     reset_pwd_token_time { nil }
