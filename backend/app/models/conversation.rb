@@ -1,6 +1,6 @@
 class Conversation < ApplicationRecord
-  belongs_to :sender, class_name: 'User', foreign_key: 'sender_id'
-  belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id'
+  belongs_to :sender, class_name: 'User', foreign_key: 'sender_id', inverse_of: :conservations
+  belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id', inverse_of: :conservations
   has_many :messages, dependent: :destroy
 
   validates :sender_id, uniqueness: { scope: :receiver_id }

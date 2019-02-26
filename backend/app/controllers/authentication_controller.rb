@@ -17,6 +17,6 @@ class AuthenticationController < ApplicationController
   def generate_token
     token = JsonWebToken.encode(user_id: user.id)
     time = 24.hours.from_now
-    cookies.signed[:jwt] = { value: token, expires: time, httponly: true }
+    cookies.signed[:jwt] = { token: token, expires: time, httponly: true }
   end
 end
