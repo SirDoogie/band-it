@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_friendship
   before_create :generate_token
   has_many :conversations, dependent: :destroy
 

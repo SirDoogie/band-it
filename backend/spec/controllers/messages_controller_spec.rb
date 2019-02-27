@@ -32,5 +32,15 @@ RSpec.describe MessagesController, type: :controller do
       it { expect(create).to have_http_status(:created) }
       it { expect(json['body']).to eq(valid_params[:message][:body]) }
     end
+
+    context 'when authorized and failed' do
+      subject(:create) { post :create, params: invalid_params }
+
+      before { jwt_assign_cookies(sender.id) }
+
+      let(:invalid_params) { { conversation_id: conversation.id, message: FactoryBot.attributes_for(:message, conversation_id: conversation.id, use_id: 's') } }
+
+      it { expect(create).to have_http_status(:unprocessable_entity) }
+    end
   end
 end

@@ -5,7 +5,7 @@ RSpec.describe PasswordResetsController, type: :controller do
     context 'when succeed' do
       subject(:create) { post :create, params: valid_params }
 
-      let(:user) { FactoryBot.create(:user, email: 'skr1p1@gmail.com') }
+      let(:user) { FactoryBot.create(:user, confirmed: true) }
       let(:valid_params) { { email: user.email } }
 
       it { expect(create).to have_http_status(:created) }
