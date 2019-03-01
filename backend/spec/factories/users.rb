@@ -1,14 +1,4 @@
 FactoryBot.define do
-  factory :message do
-    body { 'MyText' }
-    conversation { nil }
-    user { nil }
-    read { false }
-  end
-  factory :conversation do
-    sender_id { nil }
-    receiver_id { nil }
-  end
   factory :user do
     name { Faker::Name.name }
     email { Faker::Internet.email }
