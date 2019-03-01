@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :conversations, only: %i[index create] do
     resources :messages, only: %i[index create]
   end
+  resources :friends, only: %i[index update destroy]
+  resources :friend_requests, only: %i[index create update destroy]
 end

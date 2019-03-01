@@ -10,13 +10,12 @@ FactoryBot.define do
     receiver_id { nil }
   end
   factory :user do
+    name { Faker::Name.name }
     email { Faker::Internet.email }
     password { 'qwerty1234' }
-    password_confirmation { 'qwerty1234' }
-    reset_pwd_token { nil }
-    reset_pwd_token_time { nil }
-    confirmation_token { nil }
-    confirmed { true }
+    factory :user_credentials do
+      password_confirmation { 'qwerty1234' }
+    end
   end
 
   factory :confirmed_user, parent: :user do

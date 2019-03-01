@@ -15,7 +15,7 @@ class ConversationsController < ApplicationController
   def create
     return render json: matched_conversation, status: :ok if matched_conversation.present?
 
-    render json: conversation, status: :created if conversation
+    render json: conversation, status: :created if conversation.save
   end
 
   private

@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
       generate_token
       render json: { user: user.email }, status: :ok
     else
-      render json: { error: 'unauthorized' }, status: :unauthorized
+      render json: { error: 'Unauthorized' }, status: :unauthorized
     end
   end
 

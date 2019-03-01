@@ -2,20 +2,23 @@ require 'rails_helper'
 
 RSpec.describe AuthenticationController, type: :controller do
   describe 'POST #create' do
-    subject(:login) { post 'create', params: user_params }
-
-    let!(:user) { create :user_credentials }
+    let(:user) { FactoryBot.create(:confirmed_user) }
 
     context 'when login success' do
-      let(:user_params) { attributes_for(:user) }
+      subject(:create) { post :create, params: valid_params }
 
-      it { expect(login).to have_http_status(:ok) }
+      let(:valid_params) { { email: user.email, password: user.password } }
+
+      it { expect(create).to have_http_status(:ok) }
     end
 
     context 'when login failed' do
-      let(:user_params) { attributes_for(:user, email: 'a@a.com') }
+      subject(:create) { post :create, params: invalid_params }
 
-      it { expect(login).to have_http_status(:unauthorized) }
+      let(:invalid_params) { { email: user.email, password: 'asdasdasd' } }
+
+      it { expect(create).to have_http_status(:unauthorized) }
+      it { expect(json['error']).to eq('Unauthorized') }
     end
   end
 end

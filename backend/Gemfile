@@ -10,6 +10,7 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'decent_exposure', '3.0.0'
 gem 'jwt'
+gem 'has_friendship'
 gem 'rack-cors'
 
 group :development, :test do
