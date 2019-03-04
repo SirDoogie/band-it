@@ -8,9 +8,9 @@ class Navbar extends Component {
     const loggedIn = this.props.loggedIn;
 
     return(
-        <div>
+        <header>
           { loggedIn ? (<NavbarUser/>) : (<NavbarLanding/>) }
-        </div>
+        </header>
     )
   }
 }

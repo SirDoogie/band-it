@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       UserConfirmationMailer.registration_confirmation(user).deliver
       render json: user, status: :created
     else
-      render json: user.errors, status: :unprocessable_entity
+      render json: { message: 'User is no created', errors: user.errors }, status: :unprocessable_entity
     end
   end
 

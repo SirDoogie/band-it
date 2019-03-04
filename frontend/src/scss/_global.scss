@@ -1,6 +1,41 @@
-body {
-  background-image: url(../images/bg-shadow.png), url(../images/bandit-bg.jpg);
-  background-size: cover;
-  background-attachment: fixed;
+#app {
+  //background-image: url(../images/bg-shadow.png), url(../images/bandit-bg.jpg);
+  //background-size: cover;
+  //background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  footer {
+    background-color: $black;
+    padding: 1em 0 0.5em;
+    .copyright {
+      img {
+        margin-right: 10px;
+      }
+      span {
+        line-height: 15px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    .footer-menu {
+      .nav-link {
+        font-size: 13px;
+        color: $navbar-dark-color;
+        &:hover {
+          color: $navbar-dark-hover-color;
+        }
+      }
+    }
+  }
+}
+
+.wrapper {
+  padding-top: $navbar-height-landing;
+  flex: 1;
 }

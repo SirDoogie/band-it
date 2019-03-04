@@ -1,0 +1,13 @@
+.wrapper {
+  &.sign-in {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.sign-in-form {
+  @include card-dark;
+  form {
+    @include form-dark;
+  }
+}

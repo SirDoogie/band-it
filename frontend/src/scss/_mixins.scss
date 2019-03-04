@@ -1,0 +1,53 @@
+@mixin card-dark() {
+  background-color: $black;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -1px; /* !importanté */
+    border-radius: inherit; /* !importanté */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), $white, rgba(255, 255, 255, 0.5));
+  }
+  .card-title {
+    color: $primary-color;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 2em;
+  }
+}
+
+@mixin form-dark() {
+  .form-group {
+    margin-bottom: 3em;
+  }
+
+  .form-control {
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0;
+    color: $white;
+    font-weight: 500;
+    line-height: 18px;
+    font-size: 14px;
+    &:focus {
+      box-shadow: none;
+      border-color: $primary-color;
+    }
+    &::placeholder {
+      color: $white;
+      font-weight: 500;
+      line-height: 18px;
+      font-size: 14px;
+    }
+  }
+}

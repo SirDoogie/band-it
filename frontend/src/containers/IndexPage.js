@@ -9,10 +9,11 @@ class IndexPage extends Component {
   constructor(props) {
     super(props);
 
-    App.getClass = this.props.match.path
+
   }
 
   render() {
+    console.log(this.props.match);
     return(
       <LandingPage />
     )

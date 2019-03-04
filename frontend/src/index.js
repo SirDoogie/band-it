@@ -2,15 +2,18 @@ import './scss/main.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import App from './containers/App';
-import configureStore from './store/configureStore';
+import Footer from './components/layout/Footer';
 
+
+import configureStore from './store/configureStore';
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
+    <Footer/>
   </Provider>,
   document.getElementById('app')
 );

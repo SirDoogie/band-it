@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { usersActions } from '../../actions';
 import { connect } from 'react-redux';
-
+import { withRouter } from "react-router-dom";
 import SignUpForm from '../../components/users/SignUpForm'
 
 
@@ -24,6 +24,7 @@ class SignUpPage extends Component {
   }
 
   render() {
+    console.log(this.props.match);
     return(
       <div className={'container'}>
         <div className='row justify-content-center'>
@@ -48,4 +49,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(SignUpPage);
+export default withRouter(connect(mapStateToProps)(SignUpPage));

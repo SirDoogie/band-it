@@ -4,14 +4,10 @@ import rootReducer from '../reducers';
 import { createLogger } from 'redux-logger'
 
 export default function configureStore() {
-  const initialState = {
-    loggedIn: false
-  }
 
   const logger = createLogger()
   const store = createStore(
     rootReducer,
-    initialState,
     applyMiddleware(thunk, logger))
 
   if (module.hot) {

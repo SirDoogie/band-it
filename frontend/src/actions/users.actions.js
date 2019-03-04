@@ -10,13 +10,18 @@ function createUser(user) {
     dispatch(request())
 
     usersService.createUser(user)
-      .then(
-        user => dispatch(success(user)),
-        error => dispatch(failure(error))
-      )
+      .then( data => {
+        data.text().then(user => {
+          dispatch(success(JSON.parse(user)))
+        })
+      }).catch(error => {
+        error.text().then(errorMsg => {
+          dispatch(failure(JSON.parse(errorMsg)))
+        })
+      })
   }
 
   function request() { return { type: usersConstants.SIGNUP_REQUEST } }
-  function success(user) { return { type: usersConstants.SIGNUP_SUCCESS, user } }
-  function failure(error) { return { type: usersConstants.SIGNUP_FAILURE, error } }
+  function success(user) { return { type: usersConstants.SIGNUP_SUCCESS, user: user } }
+  function failure(error) { return { type: usersConstants.SIGNUP_FAILURE, error: error } }
 }
