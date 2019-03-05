@@ -39,5 +39,7 @@ module Backend
     config.api_only = true
     config.eager_load_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('lib')
+
+    config.i18n.default_locale = :en
   end
 end

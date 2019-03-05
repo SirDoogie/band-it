@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users
-  resources :user_confirmations, only: :create
-  resources :authentication, path: 'auth', only: :create
+  resource :authentication, path: 'auth', only: %i[create destroy]
+  resources :users, only: %i[index create update] do
+    resource :profile, only: %i[show update]
+  end
   resources :password_resets, only: :create
   resources :password_updates, only: :create
   resources :conversations, only: %i[index create] do
@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   end
   resources :friends, only: %i[index update destroy]
   resources :friend_requests, only: %i[index create update destroy]
+  namespace :users do
+    resources :confirmations, only: :create
+  end
 end
