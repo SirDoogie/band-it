@@ -16,11 +16,9 @@ RSpec.describe ProfilesController, type: :controller do
     end
 
     context 'when get profile data without jwt' do
-      let(:response) { parse_response(profile) }
-
       it { expect(profile.content_type).to eq 'application/json' }
       it { expect(profile).to have_http_status(:unauthorized) }
-      it { expect(response[:error]).to include 'Unauthorized' }
+      it { expect(json['error']).to include 'Unauthorized' }
     end
   end
 

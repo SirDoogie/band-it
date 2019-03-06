@@ -3,7 +3,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     email { Faker::Internet.email }
     password { 'qwerty1234' }
-    factory :user_credentials do
+    factory :user_signup do
       password_confirmation { 'qwerty1234' }
     end
   end

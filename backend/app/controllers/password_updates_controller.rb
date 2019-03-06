@@ -1,4 +1,6 @@
 class PasswordUpdatesController < ApplicationController
+  skip_before_action :authorize_request!, only: :create
+
   expose :user_by_token, -> { User.find_by(reset_pwd_token: params[:token]) }
 
   def create

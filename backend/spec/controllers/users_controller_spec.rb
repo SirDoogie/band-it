@@ -1,11 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  describe 'POST #create' do
+  describe '#index' do
+    let(:user) { FactoryBot.create(:confirmed_user) }
+
+    context 'when authorized and succeed' do
+      subject(:index) { get :index }
+
+      before { jwt_assign_cookies(user.id) }
+
+      it { expect(index).to have_http_status(:ok) }
+    end
+  end
+
+  describe '#create' do
     subject(:user) { post 'create', params: { user: user_params }, format: :json }
 
     context 'when given valid params' do
-      let(:user_params) { attributes_for(:user_credentials) }
+      let(:user_params) { attributes_for(:user_signup) }
 
       it { expect(user).to be_created }
       it { expect(user.content_type).to eq 'application/json' }
@@ -13,17 +25,15 @@ RSpec.describe UsersController, type: :controller do
 
     context 'when given nil email' do
       let(:user_params) { attributes_for(:user_signup, email: nil) }
-      let(:response) { parse_response(user) }
 
-      it { expect(response.dig(:errors, :email)).to include "can't be blank" }
+      it { expect(json['errors']['email']).to include 'can\'t be blank' }
       it { expect(user).to have_http_status(:unprocessable_entity) }
     end
 
     context 'when given short password' do
-      let(:user_params) { attributes_for(:user_credentials, password: '1234', password_confirmation: '1234') }
-      let(:response) { JSON.parse(user.body, symbolize_names: true) }
+      let(:user_params) { attributes_for(:user_signup, password: '1234', password_confirmation: '1234') }
 
-      it { expect(response.dig(:errors, :password)).to include 'is too short (minimum is 6 characters)' }
+      it { expect(json['errors']['password']).to include 'is too short (minimum is 6 characters)' }
       it { expect(user).to have_http_status(:unprocessable_entity) }
     end
   end
