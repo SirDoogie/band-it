@@ -7,9 +7,10 @@ class FriendshipPage extends Component {
   render() {
     return (
       <div>
-        <Container style={{ marginTop: '10%' }}>
-          <Row className={'justify-content-left'}>
-            <Col xs={4}>
+        <Container style={{ marginTop: '5%', marginLeft: '5%' }}>
+          {/* delete style */}
+          <Row>
+            <Col xs={3}>
               <Filter />
             </Col>
           </Row>
