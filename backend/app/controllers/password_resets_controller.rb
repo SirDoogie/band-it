@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  skip_before_action :authorize_request!, only: :create
+
   expose :user, -> { User.find_by(email: params[:email]) }
 
   def create

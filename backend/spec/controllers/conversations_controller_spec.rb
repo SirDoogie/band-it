@@ -6,6 +6,7 @@ RSpec.describe ConversationsController, type: :controller do
       subject(:index) { get :index }
 
       let(:user) { FactoryBot.create(:confirmed_user) }
+
       before { jwt_assign_cookies(user.id) }
 
       it { expect(index).to have_http_status(:ok) }

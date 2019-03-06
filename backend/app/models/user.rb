@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-
-  before_create :generate_token
+  before_create :generate_confirmation_token
   after_create :create_profile
 
   has_secure_password
@@ -19,9 +18,13 @@ class User < ApplicationRecord
   end
 
   def genarate_reset_token
-    self.reset_pwd_token = SecureRandom.urlsafe_base64.to_s
+    self.reset_pwd_token = generate_token
     self.reset_pwd_token_time = Time.now.utc
     save
+  end
+
+  def generate_confirmation_token
+    self.confirmation_token = generate_token if confirmation_token.blank?
   end
 
   def password_token_valid?
@@ -34,7 +37,6 @@ class User < ApplicationRecord
     save
   end
 
-
   def create_profile
     build_profile
   end
@@ -42,6 +44,6 @@ class User < ApplicationRecord
   private
 
   def generate_token
-    self.confirmation_token = SecureRandom.urlsafe_base64.to_s if confirmation_token.blank?
+    SecureRandom.urlsafe_base64.to_s
   end
 end

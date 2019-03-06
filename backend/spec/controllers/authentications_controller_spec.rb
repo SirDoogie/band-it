@@ -7,7 +7,7 @@ RSpec.describe AuthenticationsController, type: :controller do
     let!(:user) { create :user_signup }
 
     context 'when login success' do
-      let(:user_params) { attributes_for(:user) }
+      let(:user_params) { attributes_for(:user, email: user.email) }
 
       it { expect(login).to have_http_status(:ok) }
     end
