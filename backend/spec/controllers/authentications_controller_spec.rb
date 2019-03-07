@@ -18,4 +18,17 @@ RSpec.describe AuthenticationsController, type: :controller do
       it { expect(login).to have_http_status(:not_found) }
     end
   end
+
+  describe 'DELETE #destroy' do
+    context 'when authorized' do
+      subject(:destroy) { delete :destroy }
+
+      let(:user) { FactoryBot.create(:confirmed_user) }
+
+      before { jwt_assign_cookies(user.id) }
+
+      it { expect(destroy).to have_http_status(:ok) }
+      it { expect(json['message']).to eq 'Logged out' }
+    end
+  end
 end

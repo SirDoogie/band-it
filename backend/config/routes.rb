@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[index create update] do
     resource :profile, only: %i[show update]
   end
-  resources :password_resets, only: :create
-  resources :password_updates, only: :create
+  resource :password_resets, only: %i[create update]
   resources :conversations, only: %i[index create] do
     resources :messages, only: %i[index create]
   end
