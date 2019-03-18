@@ -1,5 +1,40 @@
 .card {
   margin: 5px 0;
+  .header {
+    padding-left: 1em;
+    &.header-search {
+      display: flex;
+      justify-content: space-between;
+      .search-btn {
+        i {
+          height: 15px;
+          width: 15px;
+          display: flex;
+          align-items: center;
+        }
+        svg {
+          width: 100%;
+        }
+      }
+      .header-search-ico {
+        display: flex;
+        align-items: center;
+        margin-right: 1em;
+      }
+    }
+    .card-title {
+      margin-top: 1.8%;
+      font-size: 14px;
+      color: #000000;
+      .subtitle {
+        margin-left: 10px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        text-decoration-line: underline;
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
   .card-header {
     background-color: $gray-200;
     border-bottom: 0;
@@ -80,7 +115,6 @@
         box-shadow: 0 1px 4px $danger;
         &::after {
           background-color: $danger;
-
         }
       }
     }
@@ -99,7 +133,6 @@
       font-size: .9rem;
       text-align: center;
       margin: 0 0 10px 0;
-
     }
   }
   .profile-info {

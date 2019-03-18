@@ -1,0 +1,118 @@
+.music-player {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2px;
+  .player-play {
+    display: flex;
+    padding: 16px 0.6em 15px 1em;
+    flex-basis: 10%;
+    align-items: center;
+    .play-btn {
+      height: 24px;
+      width: 24px;
+      padding: 7px;
+      border-radius: 50%;
+      border: 1px solid #0182e8;
+      i {
+        display: flex;
+        align-items: center;
+      }
+      svg {
+        width: 100%;
+      }
+    }
+    .ctrl-btn {
+      height: 8px;
+      width: 8px;
+      i {
+        display: flex;
+        align-items: center;
+      }
+      svg {
+        width: 100%;
+      }
+      &.back-btn {
+        margin-right: 3px;
+      }
+      &.next-btn {
+        margin-left: 3px;
+      }
+    }
+  }
+}
+
+.container-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  flex-basis: 60%;
+}
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  .player-artist {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .player-title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    padding-left: 1em;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .duration {
+    display: flex;
+    .player-duration {
+      font-style: normal;
+      font-weight: normal;
+      line-height: normal;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.3);
+      align-items: center;
+      flex-basis: 10%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.volume {
+  flex-basis: 15%;
+  display: flex;
+  padding-left: 20px;
+}
+
+.tools {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 15%;
+  justify-content: space-evenly;
+  padding-top: 1em;
+  .repeat {
+    display: flex;
+    .repeat-ico {
+      height: 13px;
+      width: 13px;
+    }
+  }
+  .shuffle {
+    display: flex;
+    .shuffle-ico {
+      height: 15px;
+      width: 15px;
+    }
+  }
+  .list {
+    display: flex;
+    .list-ico {
+      height: 15px;
+      width: 15px;
+    }
+  }
+}

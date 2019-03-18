@@ -6,9 +6,7 @@
     "node": true,
     "es6": true
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
     "no-debugger": 0,
     "no-console": 0,
@@ -22,6 +20,7 @@
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1,
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "semi": [2, "never"]
   }
 }

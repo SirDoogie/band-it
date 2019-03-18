@@ -1,0 +1,14 @@
+.video-playlist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 1em 1em 1em;
+}
+
+.video-title {
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration-line: underline;
+
+  color: #000000;
+}
