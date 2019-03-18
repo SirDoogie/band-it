@@ -1,0 +1,50 @@
+#sign-up-modal {
+
+  max-width: 900px;
+  width: 900px;
+  .modal-content {
+    flex-direction: row;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    height: 536px;
+    .modal-image {
+      background-image: url(../images/sign-up-bg.png);
+      background-size: cover;
+      width: 360px;
+    }
+    .modal-body {
+      padding: 3em 5em;
+      .title {
+        color: $dark;
+        font-family: $cursive-font;
+        text-transform: uppercase;
+        margin-bottom: 1em;
+        small {
+          display: block;
+          font-size: .875rem;
+          font-weight: 500;
+          letter-spacing: 0.03em;
+        }
+      }
+      form {
+        @include form-light;
+        .actions {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  overflow-y: auto;
+}
+
+.modal-open {
+  overflow: auto;
+}
+
+.modal-open[style] {
+  padding-right: 0px !important;
+}

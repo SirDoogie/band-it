@@ -4,6 +4,7 @@ import rootReducer from '../reducers';
 import { createLogger } from 'redux-logger'
 
 export default function configureStore() {
+
   const logger = createLogger()
   const store = createStore(
     rootReducer,

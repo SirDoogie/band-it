@@ -1,0 +1,17 @@
+.social-nav {
+  .nav-link {
+    background-color: #fff;
+    height: 27px;
+    width: 27px;
+    color: $dark;
+    padding: 0;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover, &:focus {
+      color: $primary-color;
+    }
+  }
+}

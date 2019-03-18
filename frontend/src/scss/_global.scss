@@ -1,0 +1,56 @@
+#app {
+  //background-image: url(../images/bg-shadow.png), url(../images/bandit-bg.jpg);
+  //background-size: cover;
+  //background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  footer {
+    background-color: $black;
+    padding: 2em 0 2.5em;
+    .copyright {
+      img {
+        margin-right: 10px;
+      }
+      span {
+        line-height: 15px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    .footer-menu {
+      .nav {
+        justify-content: flex-end;
+      }
+      .nav-link {
+        font-size: 13px;
+        color: $navbar-dark-color;
+        &:hover {
+          color: $navbar-dark-hover-color;
+        }
+      }
+    }
+  }
+}
+
+.wrapper {
+  flex: 1;
+  &.main {
+    background-image: url(../images/bg-shadow.png), url(../images/main-bg.png);
+    background-size: cover;
+    padding-top: $navbar-height-main;
+  }
+}
+
+a {
+  color: $primary;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+}
