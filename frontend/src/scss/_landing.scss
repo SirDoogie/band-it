@@ -1,0 +1,235 @@
+#intro {
+  background-image: url(../images/intro-bg-new.jpg);
+  background-color: rgba($black, .7);
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+  }
+  .intro-brand {
+    margin-top: 4em;
+    .get-started {
+      > span {
+        font-size: 1.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+      .for-free-img {
+        display: block;
+        height: 50px;
+        svg {
+          height: 100%;
+        }
+      }
+    }
+    .brand {
+      margin: 1.5em 0 3em;
+      position: relative;
+      height: 90px;
+      display: flex;
+      .band {
+        height: 100%;
+        svg {
+          height: 100%;
+        }
+      }
+      .it {
+        position:relative;
+        left: -25px;
+        height: 100%;
+        svg {
+          height: 100%;
+        }
+      }
+    }
+    p {
+      margin-bottom: 3em;
+    }
+  }
+
+  .intro-nav {
+    text-align: right;
+    ul {
+      list-style-type: none;
+      margin-bottom: 0;
+      li {
+        display: inline;
+        padding: 10px 20px;
+        &:not(:last-child) {
+          border-right: 1px solid #fff;
+        }
+        a {
+          color: #fff;
+          font-weight: 700;
+          font-size: 16px;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+
+  .soundwave {
+    display: flex;
+    .player {
+      display: flex;
+      align-items: center;
+      .play {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 42px;
+        height: 42px;
+        background-color: #FFFFFF;
+        text-align: center;
+        border-radius: 50%;
+        svg {
+          height: 24px;
+          width: 25px;
+        }
+      }
+      .prev, .next {
+        margin: 0 6px;
+        svg {
+          height: 22px;
+          width: 14px;
+        }
+      }
+    }
+    .wave {
+      margin-left: 3em;
+      position: relative;
+      img {
+        position: relative;
+        top: -15px;
+      }
+    }
+  }
+}
+
+#join-us {
+  background-image: url(../images/join-band-bg.png);
+  background-size: cover;
+  background-position: center;
+  padding: 10em 0 10em 0;
+  .section-title {
+    line-height: 32px;
+    font-size: 25px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin-bottom: 67px;
+    text-transform: uppercase;
+  }
+  .about {
+    .title {
+      display: flex;
+      align-items: flex-start;
+      height: 67px;
+      padding-right: 2em;
+      .number {
+        font-family: $cursive-font;
+        font-size: 30px;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.3);
+        line-height: 1;
+        height: 28px;
+        width: 42px;
+        transform: rotate(-90deg) translateX(-10px) translateY(-10px);
+      }
+      h3 {
+        line-height: 26px;
+        font-size: 20px;
+        letter-spacing: 0.04em;
+        font-weight: 400;
+      }
+    }
+    .text {
+      padding-right: 2em;
+      p {
+        line-height: 20px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+}
+
+.navbar-landing {
+  height: $navbar-height-landing;
+  position: absolute;
+  width: 100%;
+  .navbar-brand {
+    padding: 0;
+  }
+  > .container {
+    padding: 0;
+  }
+  .navbar-nav {
+    .nav-item {
+      margin: 0 5px;
+      .nav-link {
+        line-height: 16px;
+        font-size: 14px;
+      }
+    }
+  }
+  .social-nav {
+    .nav-link {
+      background-color: #fff;
+      height: 27px;
+      width: 27px;
+      color: #000;
+      padding: 0;
+      border-radius: 50%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      path {
+        fill: $dark;
+      }
+      &:hover, &:focus {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+#subscribe-us {
+  padding: 5em 0 4em;
+  .section-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4em;
+    .title {
+      font-size: 1.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0;
+      margin-right: 40px;
+      line-height: 27px;
+      span {
+        color: $primary;
+      }
+    }
+  }
+  #subscribe-form {
+    @include form-borderless($white);
+    .form-group {
+      flex: 1 0 auto;
+      .form-control {
+        width: 100%;
+      }
+    }
+  }
+}

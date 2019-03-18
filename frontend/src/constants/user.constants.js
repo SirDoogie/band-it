@@ -1,4 +1,4 @@
-export const usersConstants = {
+export const userConstants = {
   SIGNUP_REQUEST: 'USER_SIGNUP_REQUEST',
   SIGNUP_SUCCESS: 'USER_SIGNUP_SUCCESS',
   SIGNUP_FAILURE: 'USER_SIGNUP_FAILURE'

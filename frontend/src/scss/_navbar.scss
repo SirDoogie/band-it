@@ -1,0 +1,121 @@
+.social-nav {
+  display: flex;
+  .nav-item {
+    margin: 0 7px;
+  }
+  .nav-link {
+    background-color: #fff;
+    height: 27px;
+    width: 27px;
+    color: #000;
+    padding: 0 !important;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover, &:focus {
+      color: $primary-color;
+    }
+    path {
+      fill: $dark;
+    }
+  }
+}
+
+.navbar-main {
+  padding: 0 1rem;
+  height: $navbar-height-main;
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+    img {
+      height: $navbar-height-main;
+    }
+  }
+  .primary-nav {
+    margin-left: 15px;
+    .nav-item {
+      margin: 0 10px;
+      .nav-link {
+        padding: 0;
+        height: 25px;
+        width: 25px;
+        position: relative;
+        &:hover {
+          svg path {
+            fill: $primary;
+            transition: fill .2s ease-in-out;
+          }
+        }
+        .badge {
+          position: absolute;
+          padding: .25em .5em;
+          right: -15px;
+          top: -5px;
+        }
+      }
+    }
+  }
+  .social-nav {
+    .nav-item {
+      margin: 0 5px;
+    }
+    .nav-link {
+      font-size: .85rem;
+      height: 22px;
+      width: 22px;
+    }
+  }
+  .form-inline {
+    .input-group {
+      .form-control {
+        background-color: $dark;
+        font-size: .85rem;
+        height: 32px;
+        border-right: 0;
+        border-color: $white;
+        color: $white;
+      }
+      .btn-outline-light {
+        border-left: 0;
+        svg {
+          width: 15px;
+        }
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+  }
+}
+
+.nav-login {
+  .form-group {
+    position: relative;
+  }
+  .form-control {
+    background-color: rgba($white, .8);
+    height: 32px;
+    font-size: .8rem;
+    border-width: 0;
+    padding: 0.375rem 1rem;
+    letter-spacing: 0.04em;
+    width: 188px;
+    &:focus {
+      background-color: $white;
+      box-shadow: 0 0 5px 0.2rem $primary;
+    }
+  }
+  .password-reset-link {
+    position: absolute;
+    left: 15px;
+    bottom: -25px;
+    font-size: .85rem;
+  }
+}

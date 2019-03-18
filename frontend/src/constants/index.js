@@ -1,1 +1,2 @@
-export { usersConstants } from './users.constants';
+export { userConstants } from './user.constants';
+export { authConstants } from './auth.constants';

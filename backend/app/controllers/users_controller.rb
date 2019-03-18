@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if user.update(user_params)
       render 'users/show', status: :ok
     else
-      render json: { errors: user.errors }, status: :bad_request
+      render json: { message: 'User is no created', errors: user.errors }, status: :unprocessable_entity
     end
   end
 
