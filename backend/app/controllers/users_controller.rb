@@ -1,10 +1,25 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize_request!, only: :create
+
+  expose :users, -> { User.all }
   expose :user
+
+  def index
+    render 'users/index', status: :ok
+  end
 
   def create
     if user.save
       UserConfirmationMailer.registration_confirmation(user).deliver
-      render json: user, status: :created
+      render 'users/show', status: :created
+    else
+      render json: { errors: user.errors }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if user.update(user_params)
+      render 'users/show', status: :ok
     else
       render json: { message: 'User is no created', errors: user.errors }, status: :unprocessable_entity
     end
