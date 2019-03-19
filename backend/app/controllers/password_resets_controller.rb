@@ -20,7 +20,7 @@ class PasswordResetsController < ApplicationController
         render json: { user: user_by_token }, status: :ok
       else
         render json: { error: 'Bad new password' }, status: :unprocessable_entity
-       end
+      end
     else
       render json: { error: 'Token not present' }, status: :not_found
     end

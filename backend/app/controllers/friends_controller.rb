@@ -6,7 +6,7 @@ class FriendsController < ApplicationController
   expose :blocked_friend, -> { blocked_friends.find_by(id: friend.id) }
 
   def index
-    render json: { friends: friends, blocked_friends: blocked_friends }, status: :ok
+    render 'friends/index', status: :ok
   end
 
   def update

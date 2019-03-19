@@ -9,3 +9,8 @@ u.profile.profile_experiences.create(band_name: 'Hollywood Undead', period: 1)
 
 a = User.create(email: 'alpha@example.com', password: 'password', password_confirmation: 'password')
 a.profile.update(first_name: 'Jack', last_name: 'Doe', education: 'Cherkassy School of Music', status: 'in a band')
+
+
+
+b = User.create(email: 'alphda@example.com', password: 'password', password_confirmation: 'password')
+b.profile.update(first_name: 'Jacsk', last_name: 'Does', education: 'Cherkassy School of Music', status: 'in a band')

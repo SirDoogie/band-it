@@ -1,11 +1,11 @@
 class FriendRequestsController < ApplicationController
   expose :user, -> { current_user }
   expose :user_requested_friends, -> { user.requested_friends }
-  expose :user_pending_requests, -> { user.pending_friends }
+  expose :user_pending_friends, -> { user.pending_friends }
   expose :person, -> { User.find_by(id: params[:id]) }
 
   def index
-    render json: { friend_requests: user_requested_friends, pending_requests: user_pending_requests }, status: :ok
+    render 'friend_requests/index', status: :ok
   end
 
   def create

@@ -9,13 +9,13 @@ class ConversationsController < ApplicationController
   expose :matched_conversation, -> { Conversation.between(params[:sender_id], params[:receiver_id]).first }
 
   def index
-    render json: conversations, status: :ok
+    render 'conversations/index', status: :ok
   end
 
   def create
-    return render json: matched_conversation, status: :ok if matched_conversation.present?
+    return render 'conversations/show', status: :ok if matched_conversation.present?
 
-    render json: conversation, status: :created if conversation.save
+    render 'conversations/create', status: :created if conversation.save
   end
 
   private
