@@ -5,7 +5,7 @@ class Conversation < ApplicationRecord
 
   validates :sender_id, uniqueness: { scope: :receiver_id }
 
-  scope :by_user, ->(current_user) { where(current_user.id == 'sender_id' || current_user.id == 'receiver_id') }
+  scope :by_user, ->(current_user) { where(sender_id: current_user.id).or(where(receiver_id: current_user.id)) }
 
   scope :between, lambda { |sender_id, receiver_id|
     where('(conversations.sender_id = ? AND conversations.receiver_id = ?)

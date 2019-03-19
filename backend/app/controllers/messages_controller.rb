@@ -4,11 +4,11 @@ class MessagesController < ApplicationController
   expose :message, parent: :conversation
 
   def index
-    render json: messages, status: :ok
+    render 'messages/index', status: :ok
   end
 
   def create
-    return render json: message, status: :created if message.save
+    return render 'messages/create', status: :created if message.save
 
     render json: message.errors, status: :unprocessable_entity
   end
