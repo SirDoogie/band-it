@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, FormGroup, Input, FormText } from 'reactstrap'
 import { connect } from 'react-redux'
-import { authActions } from '../../actions'
 
 class NavLanding extends Component {
   constructor(props) {
@@ -16,13 +15,13 @@ class NavLanding extends Component {
   }
 
   handleChange(event) {
-    const user = { ...this.state, [event.target.id]: event.target.value }
+    const user = { ...this.state, [event.target.name]: event.target.value }
     this.setState(user)
   }
 
   submitLogin(event) {
     event.preventDefault()
-    this.props.dispatch(authActions.login(this.state.user))
+    this.props.login(this.state.email, this.state.password)
   }
 
   render() {

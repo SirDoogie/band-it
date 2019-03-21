@@ -151,3 +151,24 @@
     background: linear-gradient(to right, rgba(255, 255, 255, 0.5), $white, rgba(255, 255, 255, 0.5));
   }
 }
+
+@mixin track-info($title-color, $artist-color) {
+  display: flex;
+  justify-content: space-between;
+  span:not(.track-duration) {
+    font-size: .9rem;
+  }
+
+  .track-title {
+    color: $title-color;
+  }
+
+  .track-artist {
+    color: $artist-color;
+  }
+
+  .track-duration {
+    color: $gray-600;
+    font-size: 12px;
+  }
+}

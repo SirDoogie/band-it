@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, allow_nil: true
 
+  scope :all_except, -> (user) { where.not(id: (user.friends + [user]).map(&:id))}
+
   def email_confirm
     self.confirmed = true
     self.confirmation_token = nil
@@ -37,9 +39,6 @@ class User < ApplicationRecord
     save
   end
 
-  def create_profile
-    build_profile
-  end
 
   private
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_120857) do
+ActiveRecord::Schema.define(version: 2019_04_03_084633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2019_02_27_120857) do
 
   create_table "profile_experiences", force: :cascade do |t|
     t.string "band_name"
-    t.float "period"
+    t.integer "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "profile_id"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_02_27_120857) do
 
   create_table "profile_skills", force: :cascade do |t|
     t.string "instrument"
-    t.float "period"
+    t.integer "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "profile_id"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2019_02_27_120857) do
     t.string "country"
     t.string "city"
     t.string "status"
+    t.string "genre"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -109,7 +110,6 @@ ActiveRecord::Schema.define(version: 2019_02_27_120857) do
     t.string "confirmation_token"
     t.string "reset_pwd_token"
     t.datetime "reset_pwd_token_time"
-    t.string "name"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

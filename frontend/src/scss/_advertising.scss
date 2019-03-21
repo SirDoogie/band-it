@@ -1,17 +1,31 @@
-.advertising-card{
-  .card-title{
-    font-weight: 500;
-    line-height: normal;
-    font-size: 14px;
-    color: #000000;
-    padding-top: 1rem;
-    padding-left: .4rem;
+#advertising {
+
+}
+
+.advertising-card {
+  border: 0;
+  .card-title, .card-text {
+    font-size: .85rem;
   }
-  .card-text{
+
+  .card-img {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  .card-body {
+    padding: .45rem;
+  }
+
+  .card-title {
+    font-weight: 500;
+    color: $black;
+    margin-bottom: .45em;
+  }
+
+  .card-text {
     line-height: 18px;
-    font-size: 14px;
     letter-spacing: 0.04em;
-    color: rgba(0, 0, 0, 0.5);
-    padding: 0 .4rem .4rem .4rem;
+    color: $gray-600;
   }
 }

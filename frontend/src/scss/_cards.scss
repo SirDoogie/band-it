@@ -1,7 +1,7 @@
 .card {
   margin: 5px 0;
   .header {
-    padding-left: 1em;
+    padding-left: 1.5em;
     &.header-search {
       display: flex;
       justify-content: space-between;
@@ -63,6 +63,33 @@
       }
       svg {
         width: 100%;
+      }
+    }
+  }
+
+  .card-search {
+    background-color: $gray-100;
+    border-bottom:  1px solid $gray-300;
+    display: flex;
+    padding: .5em 1.5em;
+    .icon {
+      height: 18px;
+      width: 18px;
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .search-field {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      margin-left: 15px;
+      width: 100%;
+      &:focus {
+        outline: none;
+        box-shadow: none;
+        border-color: $gray-500;
       }
     }
   }
@@ -136,9 +163,60 @@
     }
   }
   .profile-info {
-    padding: 1em 3.5em;
+    padding: 1em 2.5em;
     ul {
       @include info-list;
+    }
+  }
+  &.xs {
+    border: 1px solid $gray-200;
+    position: relative;
+    .profile-photo {
+      padding: 10px 0;
+      .profile-image {
+        margin: 0;
+        height: 75px;
+        width: 75px;
+        .presence-pill {
+          height: 14px;
+          width: 13px;
+          bottom: 5px;
+          &::after {
+            content: '';
+            height: 11px;
+            width: 11px;
+            top: 2px;
+            left: 1px;
+          }
+        }
+      }
+    }
+    .profile-name {
+      border-bottom: 0;
+      .band-name {
+        font-size: .8rem;
+      }
+    }
+    .profile-menu {
+      display: block;
+      position: absolute;
+      top: 8px;
+      right: 6px;
+      .actions-toggle {
+        display: block;
+        height: 16px;
+        width: 6px;
+
+        svg {
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .dropdown-item {
+        font-size: .875rem;
+        padding: 0.25rem 1rem;
+      }
     }
   }
 }
@@ -162,5 +240,112 @@
       font-size: .9rem;
       color: $gray-600;
     }
+  }
+}
+
+.content-card {
+  .body-grid {
+    display: flex;
+    flex-wrap: wrap;
+    .profile-card {
+      &.xs {
+        flex-basis: 24%;
+        margin: 0 3px 6px;
+      }
+    }
+  }
+  .body-list {
+    padding: 0;
+  }
+}
+
+.user-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  justify-content: space-between;
+  border-bottom: 1px solid $gray-200;
+  padding: 1em 1.25em;
+  &:hover {
+    background-color: $gray-100;
+  }
+  .user-photo {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    .user-image {
+      @extend .rounded-circle;
+      position: relative;
+      height: 90px;
+      width: 90px;
+      img {
+        @extend .rounded-circle;
+        border: 4px solid $white;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+    .presence-pill {
+      border-radius: 50%;
+      position: absolute;
+      display: block;
+      height: 16px;
+      width: 15px;
+      bottom: 10px;
+      right: 5px;
+      &::after {
+        content: '';
+        border-radius: 50%;
+        border: 2px solid $white;
+        display: block;
+        height: 13px;
+        width: 13px;
+        position: absolute;
+        top: 2px;
+        left: 1px;
+      }
+      &.online {
+        background-color: $success;
+        box-shadow: 0 1px 4px $success;
+        &::after {
+          background-color: $success;
+        }
+      }
+      &.offline {
+        background-color: $danger;
+        box-shadow: 0 1px 4px $danger;
+        &::after {
+          background-color: $danger;
+        }
+      }
+    }
+  }
+  .user-name {
+    span {
+      display: block;
+    }
+    .full-name {
+      color: $black;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    .band-name {
+      color: $gray-600;
+      font-size: .95rem;
+      margin: 0 0 20px 0;
+    }
+
+    .status {
+      color: $gray-600;
+    }
+  }
+  .user-info {
+    flex-basis: 27%;
+    ul {
+      @include info-list;
+    }
+  }
+  .user-actions {
+    flex-basis: 23%;
   }
 }

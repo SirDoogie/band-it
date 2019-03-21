@@ -1,29 +1,31 @@
 import React, { Component } from 'react'
 import { Card, CardHeader, CardTitle } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import InlineSVG from 'svg-inline-react'
 import EditIcon from '../../images/icons/edit.svg'
 import Users from '../../components/band/Users'
 
-class BandCard extends Component {
+class FriendsCard extends Component {
   render() {
+    const friends = this.props.friends
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Band</CardTitle>
-          <a href='#!' className={'btn-edit'}>
+          <CardTitle>Friends</CardTitle>
+          <Link to='/friends' className={'btn-edit'}>
             <InlineSVG src={EditIcon} />
-          </a>
+          </Link>
         </CardHeader>
         <div className='profile-band'>
-          <Users />
-          <Users />
-          <Users />
-          <Users />
-          <Users />
+          { friends &&
+            friends.map((friend) =>
+              <Users user={friend}/>
+            )
+          }
         </div>
       </Card>
     )
   }
 }
 
-export default BandCard
+export default FriendsCard

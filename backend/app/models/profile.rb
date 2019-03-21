@@ -14,8 +14,17 @@ class Profile < ApplicationRecord
   accepts_nested_attributes_for :profile_experiences, :profile_skills, reject_if: :all_blank, allow_destroy: true
 
   DEFAULT_AVATAR_PATH = Rails.root.join('app', 'assets', 'images', 'fallback', 'profile.png')
+  AVATAR_VARIANT_OPTIONS =  { resize: '120x120', gravity: 'center', extent: '120x120' }
 
   def default_avatar
     avatar.attach(io: File.open(DEFAULT_AVATAR_PATH), filename: 'profile.png') unless avatar.attached?
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def avatar_url
+    Rails.application.routes.url_helpers.rails_representation_url(avatar.variant(combine_options: AVATAR_VARIANT_OPTIONS).processed)
   end
 end

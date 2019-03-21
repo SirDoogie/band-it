@@ -1,8 +1,10 @@
-import { authConstants } from '../constants'
-import { authService } from '../services'
+import { authConstants, userConstants } from '../constants'
+import { authService, userService } from '../services'
 
 export const authActions = {
-  login
+  login,
+  logout,
+  getCurrentUser
 }
 
 function login(email, password) {
@@ -11,20 +13,56 @@ function login(email, password) {
 
     authService.login(email, password)
       .then(
-        currentUser => dispatch(success(currentUser)),
+        user => {
+          dispatch(success(user))
+        },
         error => dispatch(failure(error))
       )
   }
 
   function request() {
-    return { type: authConstants.AUTH_REQUEST }
+    return { type: authConstants.LOGIN_REQUEST }
   }
 
-  function success(currentUser) {
-    return { type: authConstants.AUTH_SUCCESS, currentUser }
+  function success(user) {
+    return { type: authConstants.LOGIN_SUCCESS, user }
   }
 
   function failure(error) {
-    return { type: authConstants.AUTH_FAILURE, error }
+    return { type: authConstants.LOGIN_FAILURE, error }
+  }
+}
+
+function logout() {
+  authService.logout()
+
+  return { type: authConstants.LOGOUT }
+}
+
+function getCurrentUser(id) {
+  return dispatch => {
+    dispatch(request())
+
+    userService.getById(id)
+      .then(
+        user => {
+          dispatch(success(user))
+        },
+        error => {
+          dispatch(failure(error))
+        }
+      )
+  }
+
+  function request() {
+    return { type: authConstants.CURRENT_USER_REQUEST }
+  }
+
+  function success(user) {
+    return { type: authConstants.CURRENT_USER_SUCCESS, user: user }
+  }
+
+  function failure(error) {
+    return { type: authConstants.CURRENT_USER_FAILURE, error: error }
   }
 }
