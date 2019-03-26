@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   expose :conversation
-  expose :messages, -> { Message.where(conversation: conversation) }
+  expose :messages, -> { Message.where(conversation: conversation).sort_by(&:created_at) }
   expose :message, parent: :conversation
 
   def index
@@ -9,6 +9,8 @@ class MessagesController < ApplicationController
 
   def create
     return render 'messages/create', status: :created if message.save
+
+    # return head :ok if message.save
 
     render json: message.errors, status: :unprocessable_entity
   end

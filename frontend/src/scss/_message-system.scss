@@ -1,0 +1,31 @@
+.chat-container {
+  display: flex;
+  .conversation-card {
+    flex-basis: 32%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .chat-card {
+    flex-basis: 68%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.search-text {
+  border: none;
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+}
+
+.no-selected-conv {
+  display: flex;
+  justify-content: center;
+  margin-top: 5em;
+  .str {
+    font-size: 14px;
+    color: black;
+  }
+}

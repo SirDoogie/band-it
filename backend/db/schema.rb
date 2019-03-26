@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_04_03_084633) do
     t.integer "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["sender_id", "receiver_id"], name: "index_conversations_on_sender_id_and_receiver_id", unique: true
   end
 
   create_table "friendships", force: :cascade do |t|

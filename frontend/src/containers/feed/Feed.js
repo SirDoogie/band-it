@@ -13,23 +13,23 @@ class Feed extends Component {
     const currentUser = this.props.currentUser
 
     return (
-      <Wrapper class={ 'main wrapper-feed' }>
-        { currentUser.loading &&
-        <Loader type='Audio' color='#fff' height={150} width={150} />
-        }
-        { currentUser.id &&
-        <Container>
-          <Row>
-            <Col id={ 'profile' } xs={ '3' }>
-              <ProfileCard user={ currentUser } compact/>
-            </Col>
-            <Col id={ 'feed' } xs={ '7' }>
-              <FeedCard/>
-            </Col>
-            <AdvertisementPanel/>
-          </Row>
-        </Container>
-        }
+      <Wrapper class={'main wrapper-feed'}>
+        {currentUser.loading && (
+          <Loader type='Audio' color='#fff' height={150} width={150} />
+        )}
+        {currentUser.id && (
+          <Container>
+            <Row>
+              <Col id={'profile'} xs={'3'}>
+                <ProfileCard user={currentUser} compact />
+              </Col>
+              <Col id={'feed'} xs={'7'}>
+                <FeedCard />
+              </Col>
+              <AdvertisementPanel />
+            </Row>
+          </Container>
+        )}
       </Wrapper>
     )
   }

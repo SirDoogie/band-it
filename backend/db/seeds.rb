@@ -1,21 +1,55 @@
+Message.delete_all
+Conversation.delete_all
 User.delete_all
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
-u = User.create(email: 'user@example.com', password: 'password', password_confirmation: 'password')
 
-u.profile.update(first_name: 'Tony', last_name: 'Stark', birth_date: '1992-03-12', country: 'Ukraine', city: 'Cherkassy', gender: 'male', education: 'Cherkassy School of Music', status: 'in a band')
-u.profile.avatar.attach(io: File.open('app/assets/images/demo/avatar.png'), filename: 'avatar.png')
-u.profile.profile_skills.create(instrument: 'Guitar', period: 3)
-u.profile.profile_experiences.create(band_name: 'Hollywood Undead', period: 1)
+a = User.create(
+  email: 'user@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  confirmed: true,
+  confirmation_token: nil
+)
 
-a = User.create(email: 'alpha@example.com', password: 'password', password_confirmation: 'password')
-a.profile.update(first_name: 'Steve', last_name: 'Rodgers', education: 'Cherkassy School of Music', status: 'in a band', gender: 'male')
+a.profile.update(
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  birth_date: '1992-03-12',
+  country: Faker::Address.country,
+  city: Faker::Address.city,
+  gender: 'male',
+  education: Faker::University.name,
+  status: 'in a band'
+)
 
-b = User.create(email: 'thor@example.com', password: 'password', password_confirmation: 'password')
-b.profile.update(first_name: 'Thor', last_name: 'Odinson', education: 'Cherkassy School of Music', status: 'in a band', gender: 'male')
+20.times do |i|
+  u = User.create(
+    email: "user#{i}@example.com",
+    password: 'password',
+    password_confirmation: 'password',
+    confirmed: true,
+    confirmation_token: nil
+  )
 
-y = User.create(email: 'rocket@example.com', password: 'password', password_confirmation: 'password')
-y.profile.update(first_name: 'Rocket', last_name: 'Raccoon', education: 'Cherkassy School of Music', status: 'in a band', gender: 'male')
+  u.profile.update(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    birth_date: '1992-03-12',
+    country: Faker::Address.country,
+    city: Faker::Address.city,
+    gender: 'male',
+    education: Faker::University.name,
+    status: 'in a band'
+  )
+  u.profile.avatar.attach(io: File.open("app/assets/images/demo/avatars_for_seeds/avatar#{i}.jpg"), filename: "avatar#{i}.png")
+  u.profile.profile_skills.create(instrument: 'Guitar', period: 3.5)
+  u.profile.profile_experiences.create(band_name: 'Hollywood Undead', period: 1)
+end
 
-u.friend_request(a)
-a.accept_request(u)
-
+15.times do |i|
+  a = Conversation.create(sender_id: 1, receiver_id: i + 2)
+  10.times do
+    Message.create(body: Faker::Lorem.sentence, conversation: a, user_id: 1)
+    Message.create(body: Faker::Lorem.sentence, conversation: a, user_id: i + 2)
+  end
+end

@@ -1,11 +1,7 @@
 class ConversationsController < ApplicationController
-  # include Pundit
-
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
   expose :user, -> { current_user }
   expose :conversation
-  expose :conversations, -> { Conversation.by_user(user) }
+  expose :conversations, -> { Conversation.by_current_user(user).by_user_name(params[:full_name]) }
   expose :matched_conversation, -> { Conversation.between(params[:sender_id], params[:receiver_id]).first }
 
   def index
@@ -23,8 +19,4 @@ class ConversationsController < ApplicationController
   def conversation_params
     params.permit(:sender_id, :receiver_id)
   end
-
-  # def user_not_authorized(_exception)
-  #   render json: { error: 'unauthorized' }, status: :unauthorized
-  # end
 end

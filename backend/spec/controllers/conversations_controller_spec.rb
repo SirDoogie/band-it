@@ -25,8 +25,15 @@ RSpec.describe ConversationsController, type: :controller do
         subject(:create) { post :create, params: valid_params }
 
         it { expect(create).to have_http_status(:created) }
-        it { expect(json['sender_id']).to eq(valid_params[:sender_id][:id]) }
-        it { expect(json['receiver_id']).to eq(valid_params[:receiver_id][:id]) }
+      end
+
+      context 'when not-first conversation' do
+        subject(:create) { post :create, params: valid_params_created }
+
+        let!(:create_conversation) { FactoryBot.create(:conversation, sender: sender, receiver: receiver) }
+        let(:valid_params_created) { { sender_id: sender.id, receiver_id: receiver.id } }
+
+        it { expect(create).to have_http_status(:ok) }
       end
     end
   end
