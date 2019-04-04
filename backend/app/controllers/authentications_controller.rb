@@ -5,7 +5,7 @@ class AuthenticationsController < ApplicationController
   def create
     if user&.authenticate(params[:password])
       generate_token
-      render 'users/show', status: :ok
+      render json: { message: 'You are logged in' }, status: :ok
     else
       render json: { error: 'Username or password incorrect' }, status: :not_found
     end
@@ -13,6 +13,7 @@ class AuthenticationsController < ApplicationController
 
   def destroy
     cookies.delete(:jwt)
+    cookies.delete(:user_id)
     render json: { message: 'Logged out' }, status: :ok
   end
 
@@ -21,5 +22,6 @@ class AuthenticationsController < ApplicationController
   def generate_token
     token = JsonWebToken.encode(user_id: user.id)
     cookies.signed[:jwt] = { value: token, expires: 24.hours.from_now, httponly: true }
+    cookies[:user_id] = { value: user.id, expires: 24.hours.from_now }
   end
 end

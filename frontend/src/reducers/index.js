@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
-
-import { createUser } from './users.reducer';
-
-import { login } from './auth.reducer';
+import { createUser, users } from './users.reducer'
+import { auth } from './auth.reducer'
+import { friends } from './friends.reducer'
 
 export default combineReducers({
   createUser,
-  login
+  auth,
+  friends,
+  users
 })

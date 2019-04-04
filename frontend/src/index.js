@@ -1,19 +1,26 @@
-import './scss/main.scss';
+import './scss/main.scss'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
-import App from './containers/App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { Router } from 'react-router-dom'
+import { CookiesProvider } from 'react-cookie';
+import configureStore from './store/configureStore'
+import history from './helpers/history'
 
+import App from './containers/App'
 
-import configureStore from './store/configureStore';
-const store = configureStore();
+const store = configureStore()
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <CookiesProvider>
+    <Provider store={ store }>
+      <Router history={ history }>
+        <App/>
+      </Router>
+    </Provider>
+  </CookiesProvider>,
   document.getElementById('app')
-);
+)
 
-module.hot.accept();
+module.hot.accept()

@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  expose :user
+  expose :user, -> { params[:user_id].present? ? User.find(params[:user_id]) : current_user }
   expose :profile, -> { user.profile }
 
   def show

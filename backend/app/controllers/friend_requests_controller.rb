@@ -1,7 +1,7 @@
 class FriendRequestsController < ApplicationController
   expose :user, -> { current_user }
-  expose :user_requested_friends, -> { user.requested_friends }
-  expose :user_pending_friends, -> { user.pending_friends }
+  expose :pending_friends, -> { user.pending_friends }
+  expose :requested_friends, -> { user.requested_friends }
   expose :person, -> { User.find_by(id: params[:id]) }
 
   def index

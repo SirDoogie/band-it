@@ -1,12 +1,14 @@
 .navbar-user-menu {
   margin-left: 25px;
   cursor: pointer;
+
   .dropdown-menu {
     min-width: 9rem;
     padding: 0;
     border: 0;
     top: 15px !important;
   }
+
   .dropdown-item {
     font-weight: 500;
     padding: .7rem 0;
@@ -19,6 +21,7 @@
     width: 35px;
     margin-right: 10px;
   }
+
   .user-name {
     font-weight: 500;
     color: $white;

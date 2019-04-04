@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalBody, FormGroup, Input, Form } from 'reactstrap'
 import { Logo } from '../../images'
-import {connect} from "react-redux";
+import { connect } from 'react-redux'
 
-import { userActions } from '../../actions';
+import { userActions } from '../../actions'
 
 class SignUp extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class SignUp extends Component {
   }
 
   handleChange(event) {
-    const user = {...this.state.user, [event.target.id]: event.target.value}
+    const user = { ...this.state.user, [event.target.id]: event.target.value }
     this.setState({
       user: user
     })
@@ -42,9 +42,11 @@ class SignUp extends Component {
   }
 
   alreadySigned() {
-    this.toggleModal();
-    const input = document.getElementById('sign-in-email');
-    setTimeout(() => {input.focus()}, 350);
+    this.toggleModal()
+    const input = document.getElementById('sign-in-email')
+    setTimeout(() => {
+      input.focus()
+    }, 350)
   }
 
   render() {
@@ -52,8 +54,8 @@ class SignUp extends Component {
       <div>
         <Button color={ 'primary' } size='lg' onClick={ this.toggleModal }>Sign Up</Button>
         <Modal centered id='sign-up-modal' isOpen={ this.state.modalOpen } toggle={ this.toggleModal }>
-          <div className={'modal-image'}>
-            <img src={Logo} alt='Band It'/>
+          <div className={ 'modal-image' }>
+            <img src={ Logo } alt='Band It'/>
           </div>
           <ModalBody>
             <h1 className='title'>Sign Up <small>Join application - it's free!</small></h1>
@@ -67,9 +69,9 @@ class SignUp extends Component {
               <FormGroup>
                 <Input type='password' id='password_confirmation' placeholder={ 'Password confirmation' } onChange={ this.handleChange }/>
               </FormGroup>
-              <div className={'actions'}>
-                <Button color={ 'primary' } size={'lg'}>Sign Up</Button>
-                <Button color={ 'link' } onClick={this.alreadySigned}>Already signed in?</Button>
+              <div className={ 'actions' }>
+                <Button color={ 'primary' } size={ 'lg' }>Sign Up</Button>
+                <Button color={ 'link' } onClick={ this.alreadySigned }>Already signed in?</Button>
               </div>
             </Form>
           </ModalBody>
@@ -79,7 +81,7 @@ class SignUp extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     user: state.createUser
   }

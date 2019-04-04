@@ -233,3 +233,30 @@
     }
   }
 }
+
+footer {
+  background-color: $black;
+  padding: 2em 0 2.5em;
+  .copyright {
+    img {
+      margin-right: 10px;
+    }
+    span {
+      line-height: 15px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .footer-menu {
+    .nav {
+      justify-content: flex-end;
+    }
+    .nav-link {
+      font-size: 13px;
+      color: $navbar-dark-color;
+      &:hover {
+        color: $navbar-dark-hover-color;
+      }
+    }
+  }
+}

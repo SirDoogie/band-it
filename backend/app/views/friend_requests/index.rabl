@@ -1,4 +1,9 @@
-node do
-  { pending_friends: partial('friend_requests/pending_friends', object: user_requested_friends),
-    address: partial('friend_requests/requested_friends', object: user_requested_friends) }
+object :requests
+
+child(pending_friends => :pending) do |request|
+  extends('friend_requests/request', locals: {request: request})
+end
+
+child(requested_friends => :requested) do |request|
+  extends('friend_requests/request', locals: {request: request})
 end

@@ -1,9 +1,10 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const devMode = process.env.NODE_ENV !== 'production';
-const dotenv = require('dotenv').config({path: __dirname + '/.env'});
-const api = dotenv.parsed.API_URL;
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const devMode = process.env.NODE_ENV !== 'production'
+const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
+const api = dotenv.parsed.API_URL
 
 module.exports = {
   module: {
@@ -21,11 +22,14 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            plugins: ['lodash']
+          }
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
@@ -52,6 +56,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new LodashModuleReplacementPlugin({
+      coercions: true
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html'

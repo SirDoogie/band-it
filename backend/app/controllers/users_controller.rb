@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
   skip_before_action :authorize_request!, only: :create
 
-  expose :users, -> { User.all }
+  expose :users, -> { User.all_except(current_user) }
+  expose :current, -> { current_user }
   expose :user
+  expose :friends, -> { user.friends.order('RANDOM()').limit(6) }
 
   def index
     render 'users/index', status: :ok
+  end
+  
+  def show
+    render 'users/show', status: :ok
   end
 
   def create

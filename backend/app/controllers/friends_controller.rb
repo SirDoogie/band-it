@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  expose :user, -> { current_user }
+  expose :user, -> { params[:user_id].present? ? User.find(params[:user_id]) : current_user }
   expose :friends, -> { user.friends }
   expose :friend, -> { User.find_by(id: params[:id]) }
   expose :blocked_friends, -> { user.blocked_friends }
@@ -22,6 +22,7 @@ class FriendsController < ApplicationController
   end
 
   def destroy
-    render json: { message: 'User removed' }, status: :ok if user.remove_friend(friend)
+    user.remove_friend(friend)
+    render json: { message: 'User removed', user: { id: friend.id } }, status: :ok
   end
 end

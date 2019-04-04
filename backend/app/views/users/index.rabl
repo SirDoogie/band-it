@@ -1,3 +1,7 @@
-collection users, object_root: false
+collection users
 
-attributes :id, :email, :created_at, :updated_at
+attributes :id, :email
+
+child :profile do
+  attributes :full_name, :avatar_url
+end
