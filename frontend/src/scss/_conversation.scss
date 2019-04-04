@@ -1,0 +1,166 @@
+.conversation-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75em 1em 0.75em 1em;
+  align-items: center;
+  .conversation-title {
+    font-size: 14px;
+    color: #000000;
+  }
+  .conversation-add-ico {
+    .add-ico {
+      i {
+        height: 13px;
+        width: 13px;
+        display: flex;
+      }
+      svg {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.conversation-search {
+  display: flex;
+  padding: 0.75em 1em 0.75em 1em;
+  background: rgba(0, 0, 0, 0.03);
+  .conversation-search-ico {
+    display: flex;
+    align-items: center;
+    padding-right: 13px;
+    .search-btn {
+      i {
+        height: 13px;
+        width: 13px;
+        display: flex;
+      }
+      svg {
+        width: 100%;
+      }
+    }
+  }
+  .search-input-title {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.search-hr {
+  margin: 0 0 0 0;
+}
+
+.conversation-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    visibility: hidden;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    outline: 1px solid slategrey;
+    border-radius: 2px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: $primary-color;
+      outline: 1px solid slategrey;
+    }
+  }
+}
+
+.conversation-block {
+  .conversation-info {
+    display: flex;
+    margin: 1em;
+    .last-message {
+      display: flex;
+      flex-direction: column;
+      padding-left: 8px;
+      .user-name {
+        font-size: 13px;
+        color: #000000;
+      }
+      .message {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.5);
+        width: 175px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .time-message {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.conversation-hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.profile-img {
+  @extend .rounded-circle;
+  margin: -4px 0;
+  position: relative;
+  width: 50px;
+  img {
+    @extend .rounded-circle;
+    border: 4px solid $white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    height: 50px;
+  }
+  .presence-pill {
+    border-radius: 50%;
+    position: absolute;
+    display: block;
+    height: 18px;
+    width: 17px;
+    bottom: 1px;
+    right: 1px;
+    &::after {
+      content: '';
+      border-radius: 50%;
+      border: 2px solid $white;
+      display: block;
+      height: 15px;
+      width: 15px;
+      position: absolute;
+      top: 2px;
+      left: 1px;
+    }
+    &.online {
+      background-color: $success;
+      box-shadow: 0 1px 4px $success;
+      &::after {
+        background-color: $success;
+      }
+    }
+    &.offline {
+      background-color: $danger;
+      box-shadow: 0 1px 4px $danger;
+      &::after {
+        background-color: $danger;
+      }
+    }
+  }
+}
+::-webkit-scrollbar {
+  width: 0.35em;
+}

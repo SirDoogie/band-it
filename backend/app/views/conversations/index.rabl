@@ -1,3 +1,6 @@
 collection conversations, object_root: false
 
-attributes :id, :sender_id, :receiver_id, :created_at, :updated_at
+attributes :id
+node { |conversation| { user: partial('users/show', object: conversation.recipient?(user)) } }
+
+node { |conversation| { message: partial('messages/show', object: conversation.last_message) } }

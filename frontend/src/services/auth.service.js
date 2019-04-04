@@ -15,8 +15,7 @@ function login(email, password) {
     credentials: 'include'
   }
 
-  return fetch(`${ config.apiUrl }/auth`, requestOptions)
-    .then(handleResponse)
+  return fetch(`${config.apiUrl}/auth`, requestOptions).then(handleResponse)
 }
 
 function logout() {
@@ -27,7 +26,7 @@ function logout() {
     method: 'DELETE',
     credentials: 'include'
   }
-  return fetch(`${ config.apiUrl }/auth`, requestOptions).then(handleResponse)
+  return fetch(`${config.apiUrl}/auth`, requestOptions).then(handleResponse)
 }
 
 function handleResponse(response) {
@@ -35,12 +34,11 @@ function handleResponse(response) {
     const data = text && JSON.parse(text)
     if (!response.ok) {
       if (response.status === 401) {
-
       }
       const error = (data && data.message) || response.statusText
       return Promise.reject(error)
     }
-    console.log(data)
+    localStorage.setItem('user_id', data.id)
     return data
   })
 }

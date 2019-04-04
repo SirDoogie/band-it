@@ -14,7 +14,7 @@ function createUser(user) {
     method: 'POST',
     body: JSON.stringify({ user: user })
   }
-  return fetch(`${ config.apiUrl }/users`, requestOptions).then(handleResponse)
+  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse)
 }
 
 function getAll() {
@@ -25,7 +25,7 @@ function getAll() {
     method: 'GET',
     credentials: 'include'
   }
-  return fetch(`${ config.apiUrl }/users`, requestOptions).then(handleResponse)
+  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse)
 }
 
 function getById(id) {
@@ -36,7 +36,9 @@ function getById(id) {
     method: 'GET',
     credentials: 'include'
   }
-  return fetch(`${ config.apiUrl }/users/${ id }`, requestOptions).then(handleResponse)
+  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
+    handleResponse
+  )
 }
 
 function handleResponse(response) {
