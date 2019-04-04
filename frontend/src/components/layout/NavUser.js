@@ -73,9 +73,9 @@ class NavUser extends Component {
             </Link>
           </NavItem>
           <NavItem>
-            <NavLink href='#!'>
+            <Link to='/conversations' className='nav-link'>
               <InlineSVG raw src={MessagesIcon} />
-            </NavLink>
+            </Link>
           </NavItem>
           <NavItem>
             <NavLink href='#!'>

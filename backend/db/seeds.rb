@@ -46,6 +46,11 @@ a.profile.update(
   u.profile.profile_experiences.create(band_name: 'Hollywood Undead', period: 1)
 end
 
+a.friend_request(User.find(2))
+a.friend_request(User.find(4))
+User.find(2).accept_request(a)
+User.find(4).accept_request(a)
+
 15.times do |i|
   a = Conversation.create(sender_id: 1, receiver_id: i + 2)
   10.times do

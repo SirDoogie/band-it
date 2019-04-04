@@ -13,6 +13,7 @@
   &.main {
     background-image: url(../images/bg-shadow.png), url(../images/main-bg.png);
     background-size: cover;
+    background-attachment: fixed;
     padding-top: $navbar-height-main;
     padding-bottom: $player-height;
   }

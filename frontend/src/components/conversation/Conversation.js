@@ -21,8 +21,7 @@ class Conversation extends Component {
           </div>
           <div className='last-message'>
             <span className='user-name'>
-              {this.props.user.user.profile.first_name}{' '}
-              {this.props.user.user.profile.last_name}
+              {this.props.user.user.profile.full_name}
             </span>
             <span className='message'>{this.props.user.message.body}</span>
           </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import Wrapper from '../../components/layout/Wrapper'
 import ConversationCard from '../../components/users/ConversationCard'
-import Advertising from '../../components/advertising/AdvertisingForm'
+import AdvertisingPanel from '../../components/advertising/AdvertisingPanel'
 import { connect } from 'react-redux'
 import { conversationActions } from '../../actions/'
 import { messageActions } from '../../actions/'
@@ -62,11 +62,7 @@ class Conversations extends Component {
                 addMessage={this.addMessage}
               />
             </Col>
-            <Col id={'advertisement'} xs={'2'}>
-              <Advertising />
-              <Advertising />
-              <Advertising />
-            </Col>
+            <AdvertisingPanel/>
           </Row>
         </Container>
       </Wrapper>
@@ -76,7 +72,7 @@ class Conversations extends Component {
 
 function mapStateToProps(state) {
   return {
-    userId: state.auth.user && state.auth.user.id,
+    userId: state.auth.currentUser.id,
     conversations: state.conversations,
     messages: state.messages,
     conversationId: state.messages.id
