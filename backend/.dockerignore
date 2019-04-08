@@ -4,4 +4,6 @@
 log/*
 tmp/*
 .idea/
-
+.generators
+.rakeTasks
+.rspec

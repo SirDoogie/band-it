@@ -21,11 +21,6 @@ module Backend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-
-    logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.log_tags  = %i[subdomain uuid]
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
     config.middleware.use ActionDispatch::Cookies
 
     # Settings in config/environments/* take precedence over those specified here.
