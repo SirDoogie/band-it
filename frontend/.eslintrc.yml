@@ -1,0 +1,30 @@
+plugins:
+  - babel
+  - jest
+  - react
+  - import
+
+extends:
+  - airbnb-base
+  - eslint:recommended
+  - plugin:jest/recommended
+  - plugin:react/recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+
+rules:
+  react/prop-types: 0
+
+parser: babel-eslint
+
+env:
+  browser: true
+  node: true
+  jest: true
+
+settings:
+  import/resolver:
+    webpack:
+      config: 'webpack.config.dev.babel.js'
+  react:
+    version: "16.7"
