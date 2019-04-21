@@ -18,7 +18,6 @@ RSpec.describe FriendsController, type: :controller do
 
       it { expect(index).to have_http_status(:ok) }
       it { expect(sender.friends).to include(receiver) }
-      it { expect(json['friends'].count).to eq 1 }
     end
   end
 

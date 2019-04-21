@@ -29,7 +29,7 @@ RSpec.describe MessagesController, type: :controller do
       let(:valid_params) { { conversation_id: conversation.id, message: FactoryBot.attributes_for(:message, conversation_id: conversation.id, user_id: sender) } }
 
       it { expect(create).to have_http_status(:created) }
-      it { binding.pry; expect(json['body']).to eq(valid_params[:message][:body]) }
+      it { expect(json['body']).to eq(valid_params[:message][:body]) }
     end
 
     context 'when authorized and failed' do

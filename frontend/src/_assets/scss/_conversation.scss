@@ -2,8 +2,10 @@
   display: flex;
   justify-content: space-between;
   padding: 0.75em 1em 0.75em 1em;
+  min-height: max-content;
   align-items: center;
   .conversation-title {
+    cursor: default;
     font-size: 14px;
     color: #000000;
   }
@@ -13,6 +15,7 @@
         height: 13px;
         width: 13px;
         display: flex;
+        cursor: default;
       }
       svg {
         width: 100%;
@@ -25,6 +28,7 @@
   display: flex;
   padding: 0.75em 1em 0.75em 1em;
   background: rgba(0, 0, 0, 0.03);
+  min-height: max-content;
   .conversation-search-ico {
     display: flex;
     align-items: center;
@@ -34,6 +38,7 @@
         height: 13px;
         width: 13px;
         display: flex;
+        cursor: default;
       }
       svg {
         width: 100%;
@@ -53,29 +58,19 @@
 .conversation-container {
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    visibility: hidden;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    outline: 1px solid slategrey;
-    border-radius: 2px;
-  }
-
-  &:hover {
-    &::-webkit-scrollbar-thumb {
-      background-color: $primary-color;
-      outline: 1px solid slategrey;
-    }
-  }
 }
 
+.conversation-active {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.conversation-block:hover {
+  background-color: rgba(119, 110, 110, 0.15);
+  transition: all 0.8s ease;
+}
 .conversation-block {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
   .conversation-info {
     display: flex;
     margin: 1em;
@@ -102,12 +97,6 @@
       color: rgba(0, 0, 0, 0.5);
     }
   }
-}
-
-.conversation-hr {
-  margin: 0;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 textarea:focus,
@@ -163,4 +152,12 @@ input:focus {
 }
 ::-webkit-scrollbar {
   width: 0.35em;
+}
+
+.zero_conv {
+  min-height: 720px;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

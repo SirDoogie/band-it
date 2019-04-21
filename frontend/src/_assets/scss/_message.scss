@@ -16,6 +16,7 @@
           height: 13px;
           width: 13px;
           display: flex;
+          cursor: default;
         }
         svg {
           width: 100%;
@@ -33,6 +34,7 @@
           height: 13px;
           width: 13px;
           display: flex;
+          cursor: default;
         }
         svg {
           width: 100%;
@@ -52,6 +54,7 @@
 }
 
 .chat-user {
+  cursor: default;
   font-size: 14px;
   font-weight: 500;
   color: #000000;
@@ -60,6 +63,26 @@
 .message-container {
   margin: 0 0 1em 2em;
   height: 740px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    visibility: hidden;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    outline: 1px solid slategrey;
+    border-radius: 2px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: $primary-color;
+      outline: 1px solid slategrey;
+    }
+  }
 }
 
 .message-block {
@@ -70,6 +93,8 @@
     display: flex;
     flex-direction: column;
     margin-left: 15px;
+    margin-right: 20px;
+    max-width: -webkit-fill-available;
     background: rgba(0, 0, 0, 0.04);
     border-radius: 2px;
     .user-name-time {
@@ -110,6 +135,7 @@
         height: 13px;
         width: 13px;
         display: flex;
+        cursor: default;
       }
       svg {
         width: 100%;

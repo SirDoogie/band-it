@@ -11,15 +11,14 @@ function createUser(user) {
   return dispatch => {
     dispatch(request())
 
-    userService.createUser(user)
-      .then(
-        user => {
-          dispatch(success(user))
-        },
-        error => {
-          dispatch(failure(error))
-        }
-      )
+    userService.createUser(user).then(
+      user => {
+        dispatch(success(user))
+      },
+      error => {
+        dispatch(failure(error))
+      }
+    )
   }
 
   function request() {
@@ -39,15 +38,14 @@ function getAll() {
   return dispatch => {
     dispatch(request())
 
-    userService.getAll()
-      .then(
-        users => {
-          dispatch(success(users))
-        },
-        error => {
-          dispatch(failure(error))
-        }
-      )
+    userService.getAll().then(
+      users => {
+        dispatch(success(users))
+      },
+      error => {
+        dispatch(failure(error))
+      }
+    )
   }
 
   function request() {
@@ -67,15 +65,14 @@ function getCurrentUser(id) {
   return dispatch => {
     dispatch(request())
 
-    userService.getById(id)
-      .then(
-        user => {
-          dispatch(success(user))
-        },
-        error => {
-          dispatch(failure(error))
-        }
-      )
+    userService.getById(id).then(
+      user => {
+        dispatch(success(user))
+      },
+      error => {
+        dispatch(failure(error))
+      }
+    )
   }
 
   function request() {

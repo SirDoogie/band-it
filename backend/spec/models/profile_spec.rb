@@ -18,4 +18,11 @@ RSpec.describe Profile, type: :model do
     it { is_expected.to accept_nested_attributes_for(:profile_skills) }
     it { is_expected.to accept_nested_attributes_for(:profile_experiences) }
   end
+
+  describe '.avatar_url?' do
+    let(:user) { FactoryBot.create(:confirmed_user) }
+    let(:attach_avatar) { user.profile.avatar.attach(io: File.open('app/assets/images/demo/avatars_for_seeds/avatar4.jpg'), filename: 'avatar4.png') }
+
+    it { expect(user.profile.avatar_url).to eq user.profile.avatar_url }
+  end
 end

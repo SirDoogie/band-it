@@ -10,15 +10,14 @@ function getAll(user_id) {
   return dispatch => {
     dispatch(request())
 
-    friendService.getAll(user_id)
-      .then(
-        friends => {
-          dispatch(success(friends))
-        },
-        error => {
-          dispatch(failure(error))
-        }
-      )
+    friendService.getAll(user_id).then(
+      friends => {
+        dispatch(success(friends))
+      },
+      error => {
+        dispatch(failure(error))
+      }
+    )
   }
 
   function request() {
@@ -36,16 +35,14 @@ function getAll(user_id) {
 
 function removeFriend(user_id) {
   return dispatch => {
-
-    friendService.removeFriend(user_id)
-      .then(
-        data => {
-          dispatch(success(data))
-        },
-        error => {
-          dispatch(failure(error))
-        }
-      )
+    friendService.removeFriend(user_id).then(
+      data => {
+        dispatch(success(data))
+      },
+      error => {
+        dispatch(failure(error))
+      }
+    )
   }
 
   function success(data) {

@@ -5,7 +5,7 @@ export const messageService = {
   sendMessage
 }
 
-function getMessages(conversationId) {
+function getMessages(conversationId, nextPage) {
   const requestOptions = {
     headers: {
       'Content-Type': 'application/json'
@@ -15,7 +15,9 @@ function getMessages(conversationId) {
   }
 
   return fetch(
-    `${config.apiUrl}/conversations/${conversationId}/messages`,
+    `${
+      config.apiUrl
+    }/conversations/${conversationId}/messages?page=${nextPage}`,
     requestOptions
   ).then(handleResponse)
 }
