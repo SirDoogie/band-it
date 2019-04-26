@@ -14,9 +14,9 @@ const store = configureStore()
 
 ReactDOM.render(
   <CookiesProvider>
-    <Provider store={ store }>
-      <Router history={ history }>
-        <App/>
+    <Provider store={store}>
+      <Router history={history}>
+        <App />
       </Router>
     </Provider>
   </CookiesProvider>,

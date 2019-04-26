@@ -1,6 +1,10 @@
-collection conversations, object_root: false
+child @pagy => :pagination do
+  attributes :next
+end
 
-attributes :id
-node { |conversation| { user: partial('conversations/user', object: conversation.recipient?(user)) } }
+child @records => :chats do
+  attributes :id
+  node { |conversation| { user: partial('conversations/user', object: conversation.recipient?(user)) } }
 
-node { |conversation| { message: partial('messages/show', object: conversation.last_message) } }
+  node { |conversation| { message: partial('messages/show', object: conversation.last_message) } }
+end

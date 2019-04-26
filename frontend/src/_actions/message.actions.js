@@ -6,12 +6,14 @@ export const messageActions = {
   sendMessage
 }
 
-function getMessages(id) {
+function getMessages(id, nextPage) {
   return dispatch => {
     dispatch(request())
-    dispatch(convIdRequest(id))
+    if (nextPage === '1') {
+      dispatch(convIdRequest(id))
+    }
     messageService
-      .getMessages(id)
+      .getMessages(id, nextPage)
       .then(
         messages => dispatch(success(messages)),
         error => dispatch(failure(error))
@@ -27,7 +29,11 @@ function getMessages(id) {
   }
 
   function success(messages) {
-    return { type: messageConstants.MESSAGE_SUCCESS, messages }
+    if (nextPage === '1') {
+      return { type: messageConstants.MESSAGE_SUCCESS, messages }
+    } else {
+      return { type: messageConstants.MESSAGE_PAGY_SUCCESS, messages }
+    }
   }
 
   function failure(error) {
@@ -37,26 +43,20 @@ function getMessages(id) {
 
 function sendMessage(convId, body, userId) {
   return dispatch => {
-    dispatch(send_request())
+    dispatch(request())
 
     messageService
       .sendMessage(convId, body, userId)
-      .then(messages => dispatch(success(messages)))
-
-    conversationService
-      .getConversations()
-      .then(conversations => dispatch(xx(conversations)))
+      .then(dispatch(success()), error => dispatch(failure(error)))
   }
 
-  function send_request() {
+  function request() {
     return { type: messageConstants.MESSAGE_SEND_REQUEST }
   }
-
-  function success(messages) {
-    return { type: messageConstants.MESSAGE_SEND_REQUEST_SUCCESS, messages }
+  function success() {
+    return { type: messageConstants.MESSAGE_SEND_REQUEST_SUCCESS }
   }
-
-  function xx(conversations) {
-    return { type: conversationConstants.CONVERSATION_SUCCESS, conversations }
+  function failure(error) {
+    return { type: messageConstants.MESSAGE_SEND_REQUEST_FAILURE, error }
   }
 }

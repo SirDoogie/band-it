@@ -11,13 +11,12 @@ function login(email, password) {
   return dispatch => {
     dispatch(request())
 
-    authService.login(email, password)
-      .then(
-        user => {
-          dispatch(success(user))
-        },
-        error => dispatch(failure(error))
-      )
+    authService.login(email, password).then(
+      user => {
+        dispatch(success(user))
+      },
+      error => dispatch(failure(error))
+    )
   }
 
   function request() {
@@ -43,15 +42,14 @@ function getCurrentUser(id) {
   return dispatch => {
     dispatch(request())
 
-    userService.getById(id)
-      .then(
-        user => {
-          dispatch(success(user))
-        },
-        error => {
-          dispatch(failure(error))
-        }
-      )
+    userService.getById(id).then(
+      user => {
+        dispatch(success(user))
+      },
+      error => {
+        dispatch(failure(error))
+      }
+    )
   }
 
   function request() {

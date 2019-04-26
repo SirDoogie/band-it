@@ -1,10 +1,12 @@
 import config from 'config'
 
 export const conversationService = {
-  getConversations
+  getConversations,
+  getConversationsFilter,
+  getConversationsPagy
 }
 
-function getConversations(fullName) {
+function getConversationsFilter(searchValue) {
   const requestOptions = {
     headers: {
       'Content-Type': 'application/json'
@@ -13,13 +15,50 @@ function getConversations(fullName) {
     credentials: 'include'
   }
 
-  if (fullName === undefined) {
+  if (searchValue === '') {
     return fetch(`${config.apiUrl}/conversations`, requestOptions).then(
       handleResponse
     )
   } else {
     return fetch(
-      `${config.apiUrl}/conversations?full_name=${fullName}`,
+      `${config.apiUrl}/conversations?full_name=${searchValue}`,
+      requestOptions
+    ).then(handleResponse)
+  }
+}
+
+function getConversations() {
+  const requestOptions = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET',
+    credentials: 'include'
+  }
+
+  return fetch(`${config.apiUrl}/conversations`, requestOptions).then(
+    handleResponse
+  )
+}
+
+function getConversationsPagy(searchValue, paginationPage) {
+  const requestOptions = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET',
+    credentials: 'include'
+  }
+  if (searchValue === undefined || searchValue === '') {
+    return fetch(
+      `${config.apiUrl}/conversations?&page=${paginationPage}`,
+      requestOptions
+    ).then(handleResponse)
+  } else {
+    return fetch(
+      `${
+        config.apiUrl
+      }/conversations?full_name=${searchValue}&&page=${paginationPage}`,
       requestOptions
     ).then(handleResponse)
   }

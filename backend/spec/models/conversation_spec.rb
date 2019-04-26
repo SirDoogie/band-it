@@ -20,13 +20,13 @@ RSpec.describe Conversation, type: :model do
       let!(:another_conversation) { FactoryBot.create(:conversation, sender: sender, receiver: another_reciever) }
 
       context 'when conversations not nil' do
-        subject { Conversation.by_user(sender) }
+        subject { Conversation.by_current_user(sender) }
 
         it { is_expected.to eq([conversation] + [another_conversation]) }
       end
 
       context 'when conversation doesn\'t exist' do
-        subject { Conversation.by_user(sender) }
+        subject { Conversation.by_current_user(sender) }
 
         let(:second_sender) { FactoryBot.create(:confirmed_user) }
         let(:second_receiver) { FactoryBot.create(:confirmed_user) }
@@ -57,5 +57,24 @@ RSpec.describe Conversation, type: :model do
         it { is_expected.not_to eq([second_conversation]) }
       end
     end
+  end
+
+  describe '.last_message' do
+    let(:user_first) { FactoryBot.create(:user) }
+    let(:user_second) { FactoryBot.create(:user) }
+
+    let!(:conversation) { FactoryBot.create(:conversation, sender: user_first, receiver: user_second) }
+    let!(:message) { FactoryBot.create(:message, conversation: conversation, user: user_first) }
+
+    it { expect(conversation.last_message).to eq message }
+  end
+
+  describe '.recipient?' do
+    let(:user_first) { FactoryBot.create(:user) }
+    let(:user_second) { FactoryBot.create(:user) }
+
+    let!(:conversation) { FactoryBot.create(:conversation, sender: user_first, receiver: user_second) }
+
+    it { expect(conversation.recipient?(user_first)).to eq user_second }
   end
 end

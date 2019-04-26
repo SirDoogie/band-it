@@ -22,7 +22,7 @@ a.profile.update(
   status: 'in a band'
 )
 
-20.times do |i|
+500.times do |i|
   u = User.create(
     email: "user#{i}@example.com",
     password: 'password',
@@ -41,7 +41,7 @@ a.profile.update(
     education: Faker::University.name,
     status: 'in a band'
   )
-  u.profile.avatar.attach(io: File.open("app/assets/images/demo/avatars_for_seeds/avatar#{i}.jpg"), filename: "avatar#{i}.png")
+  u.profile.avatar.attach(io: File.open("app/assets/images/demo/avatars_for_seeds/avatar4.jpg"), filename: "avatar4.png")
   u.profile.profile_skills.create(instrument: 'Guitar', period: 3.5)
   u.profile.profile_experiences.create(band_name: 'Hollywood Undead', period: 1)
 end
@@ -51,9 +51,9 @@ a.friend_request(User.find(4))
 User.find(2).accept_request(a)
 User.find(4).accept_request(a)
 
-15.times do |i|
+400.times do |i|
   a = Conversation.create(sender_id: 1, receiver_id: i + 2)
-  10.times do
+  30.times do
     Message.create(body: Faker::Lorem.sentence, conversation: a, user_id: 1)
     Message.create(body: Faker::Lorem.sentence, conversation: a, user_id: i + 2)
   end
