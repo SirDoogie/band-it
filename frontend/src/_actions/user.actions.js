@@ -4,7 +4,8 @@ import { userService } from '_services'
 export const userActions = {
   createUser,
   getAll,
-  getCurrentUser
+  getCurrentUser,
+  recoverPassword
 }
 
 function createUser(user) {
@@ -58,6 +59,43 @@ function getAll() {
 
   function failure(error) {
     return { type: userConstants.GET_ALL_FAILURE, error: error }
+  }
+}
+
+function recoverPassword(email, status) {
+  if (status) {
+    return dispatch => {
+      dispatch(request())
+
+      userService.recoverPassword(email).then(
+        msg => {
+          dispatch(success())
+        },
+        error => {
+          dispatch(failure(error))
+        }
+      )
+    }
+  } else {
+    return dispatch => {
+      dispatch(reset())
+    }
+  }
+
+  function request() {
+    return { type: userConstants.RECOVER_REQUEST }
+  }
+
+  function reset() {
+    return { type: userConstants.RECOVER_RESET }
+  }
+
+  function success() {
+    return { type: userConstants.RECOVER_SUCCESS, status: 'created' }
+  }
+
+  function failure(error) {
+    return { type: userConstants.RECOVER_FAILURE, error: error }
   }
 }
 

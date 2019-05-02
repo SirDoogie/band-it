@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Input, FormText } from 'reactstrap'
+import { Button, Form, FormGroup, Input } from 'reactstrap'
 import { connect } from 'react-redux'
+import Recover from '_components/users/Recover'
 
 class NavLanding extends Component {
   constructor(props) {
@@ -26,17 +27,26 @@ class NavLanding extends Component {
 
   render() {
     return (
-      <Form inline className={ 'ml-auto nav-login' } onSubmit={ this.submitLogin }>
-        <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-          <Input type='email' name='email' id={ 'sign-in-email' } placeholder='email' onChange={ this.handleChange }/>
+      <Form inline className={'ml-auto nav-login'} onSubmit={this.submitLogin}>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Input
+            type="email"
+            name="email"
+            id={'sign-in-email'}
+            placeholder="email"
+            onChange={this.handleChange}
+          />
         </FormGroup>
-        <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
-          <Input type='password' name='password' placeholder='password' onChange={ this.handleChange }/>
-          <FormText tag='a' href='#!' color='muted' className={ 'password-reset-link' }>
-            forgot password?
-          </FormText>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Input
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={this.handleChange}
+          />
+          <Recover />
         </FormGroup>
-        <Button color={ 'outline-light' }>Sign In</Button>
+        <Button color={'outline-light'}>Sign In</Button>
       </Form>
     )
   }
@@ -44,7 +54,7 @@ class NavLanding extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state,
+    user: state
   }
 }
 
