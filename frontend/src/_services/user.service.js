@@ -3,7 +3,8 @@ import config from 'config'
 export const userService = {
   createUser,
   getById,
-  getAll
+  getAll,
+  recoverPassword
 }
 
 function createUser(user) {
@@ -16,6 +17,18 @@ function createUser(user) {
   }
   return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse)
 }
+
+function recoverPassword(email) {
+  const requestOptions = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({ email: email })
+  }
+  return fetch(`${config.apiUrl}/password_resets`, requestOptions).then(handleResponse)
+}
+
 
 function getAll() {
   const requestOptions = {

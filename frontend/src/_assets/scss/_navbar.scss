@@ -14,7 +14,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: $primary-color;
     }
     path {
@@ -46,15 +47,16 @@
         height: 25px;
         width: 25px;
         position: relative;
-        &:hover, &.active {
+        &:hover,
+        &.active {
           svg path {
             fill: $primary;
-            transition: fill .2s ease-in-out;
+            transition: fill 0.2s ease-in-out;
           }
         }
         .badge {
           position: absolute;
-          padding: .25em .5em;
+          padding: 0.25em 0.5em;
           right: -15px;
           top: -5px;
         }
@@ -66,7 +68,7 @@
       margin: 0 5px;
     }
     .nav-link {
-      font-size: .85rem;
+      font-size: 0.85rem;
       height: 22px;
       width: 22px;
     }
@@ -75,7 +77,7 @@
     .input-group {
       .form-control {
         background-color: $dark;
-        font-size: .85rem;
+        font-size: 0.85rem;
         height: 32px;
         border-right: 0;
         border-color: $white;
@@ -91,7 +93,6 @@
         }
       }
     }
-
   }
 }
 
@@ -100,9 +101,9 @@
     position: relative;
   }
   .form-control {
-    background-color: rgba($white, .8);
+    background-color: rgba($white, 0.8);
     height: 32px;
-    font-size: .8rem;
+    font-size: 0.8rem;
     border-width: 0;
     padding: 0.375rem 1rem;
     letter-spacing: 0.04em;
@@ -115,7 +116,49 @@
   .password-reset-link {
     position: absolute;
     left: 15px;
-    bottom: -25px;
-    font-size: .85rem;
+    bottom: -29px;
+    font-size: 13px;
+    text-transform: lowercase;
+    color: #6c757d !important;
   }
+  .password-reset-link:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+.restpwd-title {
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.restpwd-body {
+  font-size: 20px;
+  letter-spacing: 0.03em;
+  color: #000000;
+  margin-bottom: 0;
+  text-align: center;
+}
+.recover.form-group {
+  padding: 70px 120px 0 130px;
+}
+.recover-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+.recovery-msg-succeed {
+  font-size: 12px;
+  color: #19a741;
+}
+.recovery-msg-failed {
+  font-size: 12px;
+  color: #ec0b0b;
 }
