@@ -47,13 +47,32 @@ export function users(state = {}, action) {
         ...state,
         loading: true
       }
+
     case userConstants.GET_ALL_SUCCESS:
       return {
         ...state,
-        loading: false,
-        data: action.users
+        ...action.users,
+        loading: false
       }
     case userConstants.GET_ALL_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        errors: action.errors
+      }
+
+    case userConstants.PAGY_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case userConstants.PAGY_SUCCESS:
+      return {
+        users: state.users.concat(action.users.users),
+        pagination: action.users.pagination,
+        loading: false
+      }
+    case userConstants.PAGY_FAILURE:
       return {
         ...state,
         loading: false,

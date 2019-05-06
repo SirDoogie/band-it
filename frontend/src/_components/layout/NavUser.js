@@ -1,8 +1,27 @@
 import React, { Component } from 'react'
-import { Nav, NavItem, NavLink, Form, Input, InputGroup, InputGroupAddon, Button, Badge, Dropdown, DropdownToggle,
-        DropdownMenu, DropdownItem } from 'reactstrap'
+import {
+  Nav,
+  NavItem,
+  NavLink,
+  Form,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  Button,
+  Badge,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap'
 import { withRouter, Link } from 'react-router-dom'
-import { SearchIcon, HomeIcon, FriendsIcon, MessagesIcon, NotificationsIcon } from '_assets/images'
+import {
+  SearchIcon,
+  HomeIcon,
+  FriendsIcon,
+  MessagesIcon,
+  NotificationsIcon
+} from '_assets/images'
 
 import InlineSVG from 'svg-inline-react'
 
@@ -11,15 +30,44 @@ class NavUser extends Component {
     super(props)
 
     this.toggleUserMenu = this.toggleUserMenu.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleButtonPress = this.handleButtonPress.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+
     this.state = {
-      userMenuOpen: false
+      userMenuOpen: false,
+      searchValue: ''
     }
+  }
+
+  handleChange(e) {
+    this.setState({ searchValue: e.target.value })
   }
 
   toggleUserMenu() {
     this.setState(prevState => ({
       userMenuOpen: !prevState.userMenuOpen
     }))
+  }
+
+  handleFormSubmit = () => {
+    event.preventDefault()
+    this.props.history.push({
+      pathname: '/friends/add',
+      state: { searchValue: this.state.searchValue }
+    })
+    this.setState({ searchValue: '' })
+  }
+
+  handleButtonPress = () => {
+    this.handleFormSubmit()
+  }
+
+  handleKeyPress = event => {
+    if (event.key == 'Enter') {
+      this.handleFormSubmit()
+    }
   }
 
   render() {
@@ -34,34 +82,45 @@ class NavUser extends Component {
       <div className={'ml-auto d-flex align-items-center'}>
         <Form className={'form-inline'}>
           <InputGroup>
-            <Input type='search' placeholder='Search' />
-            <InputGroupAddon addonType='append'>
-              <Button outline color='light' size='sm'>
-                <InlineSVG raw src={SearchIcon} />
+            <Input
+              type="search"
+              placeholder="Search"
+              onKeyPress={this.handleKeyPress}
+              onChange={this.handleChange}
+              value={this.state.searchValue}
+            />
+            <InputGroupAddon addonType="append">
+              <Button
+                outline
+                color="light"
+                size="sm"
+                onClick={this.handleButtonPress}
+              >
+                <InlineSVG src={SearchIcon} />
               </Button>
             </InputGroupAddon>
           </InputGroup>
         </Form>
         <Nav navbar className={'primary-nav'}>
           <NavItem>
-            <Link to={'/feed'} className='nav-link' activeClassName='active'>
+            <Link to={'/feed'} className="nav-link" activeClassName="active">
               <InlineSVG raw src={HomeIcon} />
             </Link>
           </NavItem>
           <NavItem>
-            <Link to='/friends' className='nav-link' activeclassname='active'>
+            <Link to="/friends" className="nav-link" activeclassname="active">
               <InlineSVG raw src={FriendsIcon} />
             </Link>
           </NavItem>
           <NavItem>
-            <Link to='/conversations' className='nav-link'>
+            <Link to="/conversations" className="nav-link">
               <InlineSVG raw src={MessagesIcon} />
             </Link>
           </NavItem>
           <NavItem>
-            <NavLink href='#!'>
+            <NavLink href="#!">
               <InlineSVG raw src={NotificationsIcon} />
-              <Badge color='primary' pill>
+              <Badge color="primary" pill>
                 1
               </Badge>
             </NavLink>
@@ -75,13 +134,13 @@ class NavUser extends Component {
           <DropdownToggle color={'link'} tag={'a'}>
             <img
               src={currentUser.profile.avatar_url}
-              alt='Tony Stark'
+              alt="Tony Stark"
               className={'user-photo'}
             />
             <span className={'user-name'}>{name}</span>
           </DropdownToggle>
           <DropdownMenu>
-            <Link to='/profile' className='dropdown-item'>
+            <Link to="/profile" className="dropdown-item">
               Profile
             </Link>
             <DropdownItem>Settings</DropdownItem>

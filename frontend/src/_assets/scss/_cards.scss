@@ -45,7 +45,7 @@
     align-items: center;
     .card-title {
       color: $gray-600;
-      font-size: .9rem;
+      font-size: 0.9rem;
       display: block;
       margin-bottom: 0;
     }
@@ -69,9 +69,9 @@
 
   .card-search {
     background-color: $gray-100;
-    border-bottom:  1px solid $gray-300;
+    border-bottom: 1px solid $gray-300;
     display: flex;
-    padding: .5em 1.5em;
+    padding: 0.5em 1.5em;
     .icon {
       height: 18px;
       width: 18px;
@@ -150,14 +150,14 @@
     border-bottom: 2px solid $gray-100;
     .full-name {
       color: $black;
-      font-size: .9rem;
+      font-size: 0.9rem;
       font-weight: 500;
       text-align: center;
       margin: 15px 0 5px 0;
     }
     .band-name {
       color: $gray-600;
-      font-size: .9rem;
+      font-size: 0.9rem;
       text-align: center;
       margin: 0 0 10px 0;
     }
@@ -194,7 +194,7 @@
     .profile-name {
       border-bottom: 0;
       .band-name {
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
     }
     .profile-menu {
@@ -214,7 +214,7 @@
         }
       }
       .dropdown-item {
-        font-size: .875rem;
+        font-size: 0.875rem;
         padding: 0.25rem 1rem;
       }
     }
@@ -224,20 +224,20 @@
 .profile-experience {
   .profile-skills {
     border-bottom: 2px solid $gray-100;
-    padding: .5em .5em .5em 1em;
+    padding: 0.5em 0.5em 0.5em 1em;
     ul {
       @include info-list;
     }
   }
   .profile-about {
-    padding: .5em .5em .5em 1em;
+    padding: 0.5em 0.5em 0.5em 1em;
     b {
-      font-size: .9rem;
+      font-size: 0.9rem;
       color: $black;
     }
 
     p {
-      font-size: .9rem;
+      font-size: 0.9rem;
       color: $gray-600;
     }
   }
@@ -255,7 +255,10 @@
     }
   }
   .body-list {
+    display: flex;
+    flex-direction: column;
     padding: 0;
+    height: 731px;
   }
 }
 
@@ -331,7 +334,7 @@
     }
     .band-name {
       color: $gray-600;
-      font-size: .95rem;
+      font-size: 0.95rem;
       margin: 0 0 20px 0;
     }
 

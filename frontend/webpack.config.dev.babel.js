@@ -9,19 +9,17 @@ import autoprefixer from 'autoprefixer'
 module.exports = {
   devtool: false,
   entry: {
-    main: [
-      '@babel/polyfill',
-      './src/index.js'
-    ],
-    bundle: ['jquery', 'popper.js', 'bootstrap'],
+    main: ['@babel/polyfill', './src/index.js'],
+    bundle: ['jquery', 'popper.js', 'bootstrap']
   },
   output: {
     filename: '[name].js',
+    publicPath: '/'
   },
   devServer: {
     host: '0.0.0.0',
-    hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true
   },
   module: {
     rules: [
@@ -37,38 +35,38 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/react'],
-            cacheDirectory: true,
-            plugins: ['react-hot-loader/babel'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/react'],
+              cacheDirectory: true,
+              plugins: ['react-hot-loader/babel']
+            }
           }
-        }]
+        ]
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
             loader: 'style-loader',
-            options: { sourceMap: true },
+            options: { sourceMap: true }
           },
           {
             loader: 'css-loader',
-            options: { sourceMap: true },
+            options: { sourceMap: true }
           },
           {
             loader: 'postcss-loader',
             options: {
               sourceMap: true,
-              plugins: [
-                autoprefixer,
-              ],
-            },
+              plugins: [autoprefixer]
+            }
           },
           {
             loader: 'sass-loader',
-            options: { sourceMap: true },
+            options: { sourceMap: true }
           }
         ]
       },
@@ -78,8 +76,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]',
-            },
+              name: '[path][name].[ext]'
+            }
           },
           'img-loader'
         ]
@@ -88,18 +86,18 @@ module.exports = {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
       }
-    ],
+    ]
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      root: path.resolve(__dirname, './src'),
+      root: path.resolve(__dirname, './src')
     }
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        devServer: true,
+        devServer: true
       }
     }),
     new webpack.ProvidePlugin({
@@ -108,9 +106,7 @@ module.exports = {
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default']
     }),
-    new CopyWebpackPlugin([
-      { from: 'src/images', to: 'images' }
-    ]),
+    new CopyWebpackPlugin([{ from: 'src/images', to: 'images' }]),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
       exclude: ['bundle.js']
