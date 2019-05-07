@@ -26,11 +26,12 @@ function recoverPassword(email) {
     method: 'POST',
     body: JSON.stringify({ email: email })
   }
-  return fetch(`${config.apiUrl}/password_resets`, requestOptions).then(handleResponse)
+  return fetch(`${config.apiUrl}/password_resets`, requestOptions).then(
+    handleResponse
+  )
 }
 
-
-function getAll() {
+function getAll(searchValue, paginatonPage) {
   const requestOptions = {
     headers: {
       'Content-Type': 'application/json'
@@ -38,7 +39,27 @@ function getAll() {
     method: 'GET',
     credentials: 'include'
   }
-  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse)
+  if (searchValue === null && paginatonPage === '') {
+    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse)
+  }
+  if (searchValue !== null && paginatonPage === '') {
+    return fetch(
+      `${config.apiUrl}/users?full_name=${searchValue}`,
+      requestOptions
+    ).then(handleResponse)
+  }
+  if (searchValue === null && paginatonPage !== '') {
+    return fetch(
+      `${config.apiUrl}/users?page=${paginatonPage}`,
+      requestOptions
+    ).then(handleResponse)
+  }
+  if (searchValue !== null && paginatonPage !== '') {
+    return fetch(
+      `${config.apiUrl}/users?full_name=${searchValue}&&page=${paginatonPage}`,
+      requestOptions
+    ).then(handleResponse)
+  }
 }
 
 function getById(id) {
@@ -54,6 +75,21 @@ function getById(id) {
   )
 }
 
+function getUsersPagy(searchValue, paginationPage) {
+  const requestOptions = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'GET',
+    credentials: 'include'
+  }
+  if (searchValue === undefined || searchValue === '') {
+    return fetch(
+      `${config.apiUrl}/users?&page=${paginationPage}`,
+      requestOptions
+    ).then(handleResponse)
+  }
+}
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text)

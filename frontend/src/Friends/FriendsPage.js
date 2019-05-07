@@ -18,7 +18,7 @@ class FriendsPage extends Component {
 
   componentDidMount() {
     const user = this.props.currentUser
-    if(user.id) {
+    if (user.id) {
       this.props.dispatch(friendActions.getAll(user.id))
     }
   }
@@ -28,17 +28,20 @@ class FriendsPage extends Component {
   }
 
   render() {
-    return(
-      <Wrapper class={ 'main wrapper-friends' }>
+    return (
+      <Wrapper class={'main wrapper-friends'}>
         <Container>
           <Row>
-            <Col xs={ '3' }>
-              <FriendsFilter/>
+            <Col xs={'3'}>
+              <FriendsFilter />
             </Col>
-            <Col xs={ '7' }>
-              <FriendsGrid friends={this.props.friends} removeFriend={this.removeFriend}/>
+            <Col xs={'7'}>
+              <FriendsGrid
+                friends={this.props.friends}
+                removeFriend={this.removeFriend}
+              />
             </Col>
-            <AdvertisementPanel/>
+            <AdvertisementPanel />
           </Row>
         </Container>
       </Wrapper>

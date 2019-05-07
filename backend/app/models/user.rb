@@ -11,12 +11,16 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, allow_nil: true
 
-  scope :all_except, -> (user) { where.not(id: (user.friends + [user]).map(&:id))}
+  scope :all_except, ->(user) { where.not(id: (user.friends + [user]).map(&:id)) }
 
   def email_confirm
     self.confirmed = true
     self.confirmation_token = nil
     save
+  end
+
+  def self.by_full_name(full_name)
+    User.joins(:profile).where('first_name ILIKE ? OR last_name ILIKE ? ', "%#{full_name}%", "%#{full_name}%")
   end
 
   def genarate_reset_token
@@ -38,7 +42,6 @@ class User < ApplicationRecord
     self.password = password
     save
   end
-
 
   private
 
