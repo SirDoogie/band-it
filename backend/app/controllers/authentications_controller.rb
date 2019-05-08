@@ -5,7 +5,7 @@ class AuthenticationsController < ApplicationController
   def create
     if user&.authenticate(params[:password])
       generate_token
-      render json: { message: 'You are logged in' }, status: :ok
+      render 'auth/show', status: :ok
     else
       render json: { error: 'Username or password incorrect' }, status: :not_found
     end
