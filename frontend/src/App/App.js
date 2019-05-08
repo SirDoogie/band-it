@@ -43,7 +43,7 @@ class App extends Component {
     const currentUser = this.props.currentUser
     return (
       <main>
-        <Navigation getCurrentUser={this.getCurrentUser} />
+        <Navigation />
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/confirmation/:token" exact component={Confirmation} />

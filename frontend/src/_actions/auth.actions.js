@@ -2,34 +2,26 @@ import { authConstants, userConstants } from '_constants'
 import { authService, userService } from '_services'
 
 export const authActions = {
-  login,
   logout,
-  getCurrentUser
+  getCurrentUser,
+  loginRequest,
+  loginFailure,
+  loginSuccess
 }
 
-function login(email, password) {
-  return dispatch => {
-    dispatch(request())
-
-    authService.login(email, password).then(
-      user => {
-        dispatch(success(user))
-      },
-      error => dispatch(failure(error))
-    )
+function loginRequest(email, password) {
+  return {
+    type: authConstants.LOGIN_REQUEST,
+    payload: { email: email, password: password }
   }
+}
 
-  function request() {
-    return { type: authConstants.LOGIN_REQUEST }
-  }
+function loginSuccess(user) {
+  return { type: authConstants.LOGIN_SUCCESS, user }
+}
 
-  function success(user) {
-    return { type: authConstants.LOGIN_SUCCESS, user }
-  }
-
-  function failure(error) {
-    return { type: authConstants.LOGIN_FAILURE, error }
-  }
+function loginFailure(error) {
+  return { type: authConstants.LOGIN_FAILURE, error }
 }
 
 function logout() {

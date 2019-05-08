@@ -13,6 +13,7 @@ export function auth(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        currentUser: action.user,
         loggedIn: true
       }
     case authConstants.LOGIN_FAILURE:

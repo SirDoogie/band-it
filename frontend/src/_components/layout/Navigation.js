@@ -46,7 +46,7 @@ class Navigation extends Component {
   }
 
   login(email, password) {
-    this.props.dispatch(authActions.login(email, password))
+    this.props.dispatch(authActions.loginRequest(email, password))
   }
 
   logout() {
