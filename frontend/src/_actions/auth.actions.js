@@ -41,7 +41,6 @@ function logout() {
 function getCurrentUser(id) {
   return dispatch => {
     dispatch(request())
-
     userService.getById(id).then(
       user => {
         dispatch(success(user))

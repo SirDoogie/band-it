@@ -4,14 +4,21 @@ const initialState = { loggedIn: false, currentUser: {}, loading: true }
 
 export function auth(state = initialState, action) {
   switch (action.type) {
+    case authConstants.LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
     case authConstants.LOGIN_SUCCESS:
       return {
         ...state,
+        loading: false,
         loggedIn: true
       }
     case authConstants.LOGIN_FAILURE:
       return {
         ...state,
+        loading: false,
         error: action.error
       }
     case authConstants.LOGOUT:

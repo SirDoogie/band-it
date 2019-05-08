@@ -35,7 +35,6 @@ class Navigation extends Component {
     this.state = {
       isOpen: false
     }
-
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
   }

@@ -96,6 +96,15 @@
   }
 }
 
+.bad-pwd {
+  position: absolute;
+  left: -190px;
+  top: 36px;
+  font-size: 13px;
+  color: #ea0404 !important;
+  font-weight: 500;
+}
+
 .nav-login {
   .form-group {
     position: relative;

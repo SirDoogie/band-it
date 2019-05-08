@@ -43,27 +43,27 @@ class App extends Component {
     const currentUser = this.props.currentUser
     return (
       <main>
-        <Navigation />
+        <Navigation getCurrentUser={this.getCurrentUser} />
         <Switch>
-          <Route path='/' exact component={Landing} />
-          <Route path='/confirmation/:token' exact component={Confirmation} />
+          <Route path="/" exact component={Landing} />
+          <Route path="/confirmation/:token" exact component={Confirmation} />
           <PrivateRoute
-            path='/feed'
+            path="/feed"
             component={() => <Feed cookies={this.props.cookies} />}
           />
           <PrivateRoute
-            path='/profile'
+            path="/profile"
             exact
             component={() => <Profile cookies={this.props.cookies} />}
           />
           <PrivateRoute
-            path='/profile/update'
+            path="/profile/update"
             exact
             component={ProfileUpdate}
           />
-          <PrivateRoute path='/friends' exact component={FriendsPage} />
-          <PrivateRoute path='/friends/add' exact component={UsersPage} />
-          <PrivateRoute path='/conversations' exact component={ChatPage} />
+          <PrivateRoute path="/friends" exact component={FriendsPage} />
+          <PrivateRoute path="/friends/add" exact component={UsersPage} />
+          <PrivateRoute path="/conversations" exact component={ChatPage} />
         </Switch>
         {currentUser.id && <MusicPlayer />}
       </main>
