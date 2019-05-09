@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
+  include Pagy::Backend
+
   skip_before_action :authorize_request!, only: :create
 
-  expose :users, -> { User.all_except(current_user) }
+  expose :users, -> { User.all_except(current_user).by_full_name(params[:full_name]) }
   expose :current, -> { current_user }
   expose :user
   expose :friends, -> { user.friends.order('RANDOM()').limit(6) }
 
   def index
+    @pagy, @records = pagy(users, items: 20)
     render 'users/index', status: :ok
   end
-  
+
   def show
     render 'users/show', status: :ok
   end

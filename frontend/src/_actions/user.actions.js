@@ -35,18 +35,42 @@ function createUser(user) {
   }
 }
 
-function getAll() {
+function getAll(searchValue, paginatonPage) {
   return dispatch => {
-    dispatch(request())
-
-    userService.getAll().then(
-      users => {
-        dispatch(success(users))
-      },
-      error => {
-        dispatch(failure(error))
+    if (paginatonPage === '') {
+      dispatch(request())
+      userService.getAll(searchValue, paginatonPage).then(
+        users => {
+          dispatch(success(users))
+        },
+        error => {
+          dispatch(failure(error))
+        }
+      )
+    } else {
+      if (paginatonPage !== null) {
+        dispatch(pagyRequest())
+        userService.getAll(searchValue, paginatonPage).then(
+          users => {
+            dispatch(pagySuccess(users))
+          },
+          error => {
+            dispatch(pagyFailure(error))
+          }
+        )
       }
-    )
+    }
+  }
+  function pagyRequest() {
+    return { type: userConstants.PAGY_REQUEST }
+  }
+
+  function pagySuccess(users) {
+    return { type: userConstants.PAGY_SUCCESS, users: users }
+  }
+
+  function pagyFailure(error) {
+    return { type: userConstants.PAGY_FAILURE, error: error }
   }
 
   function request() {
