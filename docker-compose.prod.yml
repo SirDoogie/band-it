@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+  postgres:
+    image: postgres:11.1
+    env_file:
+      - ./.prod.env
+  backend:
+    depends_on:
+      - postgres
+    env_file:
+      - ./.prod.env
+  frontend:
+    env_file:
+      - ./.prod.env
+  nginx:
+    image: bitnami/nginx:1.10.2-r1
+    volumes:
+      - ./config/nginx:/bitnami/nginx/conf/vhosts
+    depends_on:
+      - backend
+      - frontend
+    env_file:
+      - ./.prod.env
+    ports:
+      - 80:80

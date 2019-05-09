@@ -106,7 +106,9 @@ module.exports = {
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default']
     }),
-    new CopyWebpackPlugin([{ from: 'src/images', to: 'images' }]),
+    new CopyWebpackPlugin([
+      { from: 'src/_assets/images', to: 'images' }
+    ]),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
       exclude: ['bundle.js']

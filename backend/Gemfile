@@ -27,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
+  gem 'rubocop-performance'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end

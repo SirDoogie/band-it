@@ -3,7 +3,10 @@
 .byebug_history
 log/*
 tmp/*
+storage/*
+coverage/
 .idea/
 .generators
 .rakeTasks
 .rspec
+db/*.sqlite3
