@@ -1,9 +1,17 @@
 import '@babel/polyfill'
-import webpack from 'webpack'
+
 import path from 'path'
+
+import webpack from 'webpack'
+
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+import ImageMinPlugin from 'imagemin-webpack-plugin'
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+
 import autoprefixer from 'autoprefixer'
 
 module.exports = {
@@ -11,30 +19,16 @@ module.exports = {
   entry: {
     main: [
       '@babel/polyfill',
-      './src/index.js'
+      './src/app/index.js'
     ],
     bundle: ['jquery', 'popper.js', 'bootstrap'],
   },
   output: {
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/'
-  },
-  devServer: {
-    host: '0.0.0.0',
-    hot: true,
-    historyApiFallback: true
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true
-        }
-      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -42,16 +36,14 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/react'],
-            cacheDirectory: true,
-            plugins: ['react-hot-loader/babel'],
-          }
-        }]
+          },
+        }],
       },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: MiniCssExtractPlugin.loader,
             options: { sourceMap: true },
           },
           {
@@ -70,20 +62,8 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: { sourceMap: true },
-          }
-        ]
-      },
-      {
-        test: /\.(gif|png|jpe?g)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[path][name].[ext]',
-            },
           },
-          'img-loader'
-        ]
+        ],
       },
       {
         test: /\.svg$/,
@@ -98,36 +78,40 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        devServer: true,
-      }
-    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
-      Popper: ['popper.js', 'default']
+      Popper: ['popper.js', 'default'],
     }),
     new CopyWebpackPlugin([
-      { from: 'src/_assets/images', to: 'images' }
+      { from: 'src/_assets/images', to: 'images' },
     ]),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
-      exclude: ['bundle.js']
+      exclude: ['bundle.js'],
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
     new HtmlWebpackPlugin({
       filename: './index.html',
-      template: './src/index.html'
+      template: './src/index.html',
     }),
-    new LodashModuleReplacementPlugin({
-      coercions: true
-    })
   ],
-  externals: {
-    config: JSON.stringify({
-      apiUrl: process.env.API_URL
-    })
-  }
-}
+  optimization: {
+    minimizer: [
+      new UglifyJSPlugin({ sourceMap: true }),
+      new ImageMinPlugin({
+        test: /\.(png|jpe?g|gif|svg)$/,
+      }),
+      new OptimizeCssAssetsPlugin({
+        cssProcessorOptions: { sourceMap: true },
+      }),
+    ],
+  },
+};

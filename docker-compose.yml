@@ -4,8 +4,8 @@ services:
   postgres:
     image: postgres:11.1
     volumes:
-      - ./pgdata/log:/var/log/postgresql
-      - ./pgdata/data:/var/lib/postgresql/data
+      - ./tmp/log:/var/log/postgresql
+      - ./tmp/db:/var/lib/postgresql/data
     env_file:
       - ./.env
     ports:
@@ -17,13 +17,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile
       args:
-        USER_ID: ${USER_ID:-0}
-        GROUP_ID: ${GROUP_ID:-0}
+        APP_PATH: ${APP_PATH}
     env_file:
       - ./.env
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - ./backend:/home/astral/backend
+      - ./backend:/usr/band-it/backend
     ports:
       - 3000:3000
     stdin_open: true
@@ -36,7 +35,6 @@ services:
         APP_PATH: ${APP_PATH}
     command: yarn run start
     volumes:
-      - ./frontend/node_modules:/usr/band-it/frontend/node_modules
       - ./frontend:/usr/band-it/frontend
     env_file:
       - ./.env

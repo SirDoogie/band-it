@@ -45,6 +45,9 @@ class NavLanding extends Component {
             onChange={this.handleChange}
           />
           <Recover />
+          {this.props.status.error && !this.props.status.loading && (
+            <span className="bad-pwd">Incorrect email or password</span>
+          )}
         </FormGroup>
         <Button color={'outline-light'}>Sign In</Button>
       </Form>
@@ -54,7 +57,8 @@ class NavLanding extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state
+    user: state,
+    status: state.auth
   }
 }
 

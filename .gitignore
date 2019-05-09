@@ -24,6 +24,7 @@ pickle-email-*.html
 # TODO Comment out this rule if environment variables can be committed
 */.env
 .env
+.prod.env
 
 ## Environment normalization:
 */.bundle
@@ -55,3 +56,4 @@ bower.json
 */.generators
 */.rakeTasks
 pgdata/
+tmp/
